@@ -11,7 +11,7 @@ $ npm install @xaro/css-animations
 ## Usage
 
 ```ts
-const animation = new ClassAnimation({
+const animation = new CSSCSSClassAnimationss({
   el: '.el', // string | string[] | Element | Element[]
   on: {
     start: (els: Element[], event: AnimationEvent | TransitionEvent) => {
@@ -44,17 +44,17 @@ For example: opening a modal window with animation using only css classes.
 // modal.ts
 
 class Modal {
-  container:    Element;
-  ClassAnimation: ClassAnimation;
+  container: Element;
+  animation: CSSClassAnimations;
   // ...
 
   constructor(/* ... */) {
-    this.ClassAnimation = new ClassAnimation({
+    this.animation = new CSSClassAnimations({
       el: this.container
     });
     // ...
 
-    this.ClassAnimation.on('end', () => {
+    this.animation.on('end', () => {
       this.container.style.display = 'none';
     });
   }
@@ -76,7 +76,7 @@ class Modal {
 *Therefore, it is recommended to indicate only those events that you will listen to.*
 
 ```ts
-const animation = new ClassAnimation({
+const animation = new CSSClassAnimations({
   el: '.el'
   allow: [
     'animationend'
@@ -96,11 +96,11 @@ Remove listener from elements (calls removeEventListener, but callbacks remain i
 ***
 - **on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void**
 Adds callback functions to an event by its key
-  > *The first parameter does not need to specify the DOM event key, but the ClassAnimation event key (* **start**, **cancel**, **end**, **iteration**, **run** *)*
+  > *The first parameter does not need to specify the DOM event key, but the CSSClassAnimations event key (* **start**, **cancel**, **end**, **iteration**, **run** *)*
 
-- The library uses [@xaro/event-emitter](https://www.npmjs.com/package/@xaro/event-emitter) and you can use all its features through the **emitter** property of the ClassAnimation object instance
+- The library uses [@xaro/event-emitter](https://www.npmjs.com/package/@xaro/event-emitter) and you can use all its features through the **emitter** property of the CSSClassAnimations object instance
   ```ts
-  const animation = new ClassAnimation({
+  const animation = new CSSClassAnimations({
     el: '.el'
   });
   animation.emitter.subscribe('start', (els: Element[], event: AnimationEvent | TransitionEvent) => {
@@ -114,9 +114,9 @@ Adds callback functions to an event by its key
 
 *types.d.ts*
 ```ts
-import { I_EventEmitter } from "@xaro/event-emitter";
+import { I_EventEmitter, T_Func } from "@xaro/event-emitter";
 
-export interface I_ClassAnimation {
+export interface I_CSSClassAnimations {
   els:      Element[];
   emitter:  I_EventEmitter;
 
@@ -125,10 +125,10 @@ export interface I_ClassAnimation {
   on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void;
 }
 
-export interface I_ClassAnimationConstructorConfig {
-  el:         Element | Element[] | string | string[];  // Selector/s or Element/s
-  allow?:     T_DOMEventsKeys[];                        // Allow    DOM events
-  disallow?:  T_DOMEventsKeys[];                        // Disallow DOM events
+export interface I_CSSClassAnimationsConstructorConfig {
+  el: Element | Element[] | string | string[];
+  allow?:     T_DOMEventsKeys[];
+  disallow?:  T_DOMEventsKeys[];
   on?: {
     start?:     (els: Element[], event: AnimationEvent | TransitionEvent) => void | ((els: Element[], event: AnimationEvent | TransitionEvent) => void)[];
     cancel?:    (els: Element[], event: AnimationEvent | TransitionEvent) => void | ((els: Element[], event: AnimationEvent | TransitionEvent) => void)[];
