@@ -17,11 +17,11 @@ export interface I_CSSClassAnimationsConstructorConfig {
   allow?:     T_DOMEventsKeys[];
   disallow?:  T_DOMEventsKeys[];
   on?: {
-    start?:     (els: Element[], event: AnimationEvent | TransitionEvent) => void | ((els: Element[], event: AnimationEvent | TransitionEvent) => void)[];
-    cancel?:    (els: Element[], event: AnimationEvent | TransitionEvent) => void | ((els: Element[], event: AnimationEvent | TransitionEvent) => void)[];
-    end?:       (els: Element[], event: AnimationEvent | TransitionEvent) => void | ((els: Element[], event: AnimationEvent | TransitionEvent) => void)[];
-    iteration?: (els: Element[], event: AnimationEvent) => void | ((els: Element[], event: AnimationEvent) => void)[];
-    run?:       (els: Element[], event: TransitionEvent) => void | ((els: Element[], event: TransitionEvent) => void)[];
+    start?:     (event: AnimationEvent | TransitionEvent) => void | ((event: AnimationEvent | TransitionEvent) => void)[];
+    cancel?:    (event: AnimationEvent | TransitionEvent) => void | ((event: AnimationEvent | TransitionEvent) => void)[];
+    end?:       (event: AnimationEvent | TransitionEvent) => void | ((event: AnimationEvent | TransitionEvent) => void)[];
+    iteration?: (event: AnimationEvent) => void | ((event: AnimationEvent) => void)[];
+    run?:       (event: TransitionEvent) => void | ((event: TransitionEvent) => void)[];
   }
 }
 

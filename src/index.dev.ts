@@ -13,19 +13,19 @@ const animation = new CSSClassAnimations({
   //   'transitionend'
   // ],
   on: {
-    start: (els: Element[], event: AnimationEvent | TransitionEvent) => {
+    start: (event: AnimationEvent | TransitionEvent) => {
       console.log('[start]', event)
     },
-    cancel: (els: Element[], event: AnimationEvent | TransitionEvent) => {
+    cancel: (event: AnimationEvent | TransitionEvent) => {
       console.log('[cancel]', event)
     },
-    end: (els: Element[], event: AnimationEvent | TransitionEvent) => {
+    end: (event: AnimationEvent | TransitionEvent) => {
       console.log('[end]', event)
     },
-    iteration: (els: Element[], event: AnimationEvent) => {
+    iteration: (event: AnimationEvent) => {
       console.log('[iteration]', event)
     },
-    run: (els: Element[], event: TransitionEvent) => {
+    run: (event: TransitionEvent) => {
       console.log('[run]', event)
     },
   }

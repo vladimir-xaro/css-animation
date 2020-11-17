@@ -14,25 +14,30 @@ $ npm install @xaro/css-class-animations
 const animation = new CSSClassAnimationss({
   el: '.el', // string | string[] | Element | Element[]
   on: {
-    start: (els: Element[], event: AnimationEvent | TransitionEvent) => {
+    start: (event: AnimationEvent | TransitionEvent) => {
       console.log('[start]', event);
     },
-    cancel: (els: Element[], event: AnimationEvent | TransitionEvent) => {
+    cancel: (event: AnimationEvent | TransitionEvent) => {
       console.log('[cancel]', event);
     },
-    end: (els: Element[], event: AnimationEvent | TransitionEvent) => {
+    end: (event: AnimationEvent | TransitionEvent) => {
       console.log('[end]', event);
     },
-    iteration: (els: Element[], event: AnimationEvent) => {
+    iteration: (event: AnimationEvent) => {
       console.log('[iteration]', event);
     },
-    run: (els: Element[], event: TransitionEvent) => {
+    run: (event: TransitionEvent) => {
       console.log('[run]', event);
     }
   }
 });
 ```
 *Now information about the event will be displayed in the console when it occurs.*
+
+***
+**ATTENTION**
+Сallback function will be called for each element when the event occurs
+***
 
 ## Why is this needed?
 
@@ -115,13 +120,15 @@ Sets the style attribute property of each element in the instance and returns ar
 Adds callback functions to an event by its key
   > *The first parameter does not need to specify the DOM event key, but the CSSClassAnimations event key (* **start**, **cancel**, **end**, **iteration**, **run** *)*
 
+***
+
 - The library uses [@xaro/event-emitter](https://www.npmjs.com/package/@xaro/event-emitter) and you can use all its features through the **emitter** property of the CSSClassAnimations object instance
   ```ts
   const animation = new CSSClassAnimations({
     el: '.el'
   });
-  animation.emitter.subscribe('start', (els: Element[], event: AnimationEvent | TransitionEvent) => {
-    console.log('[start]', els, event);
+  animation.emitter.subscribe('start', (event: AnimationEvent | TransitionEvent) => {
+    console.log('[start]', event);
   });
   animation.emitter.emit('start', /* ... */);
   ```
@@ -149,11 +156,11 @@ export interface I_CSSClassAnimationsConstructorConfig {
   allow?:     T_DOMEventsKeys[];
   disallow?:  T_DOMEventsKeys[];
   on?: {
-    start?:     (els: Element[], event: AnimationEvent | TransitionEvent) => void | ((els: Element[], event: AnimationEvent | TransitionEvent) => void)[];
-    cancel?:    (els: Element[], event: AnimationEvent | TransitionEvent) => void | ((els: Element[], event: AnimationEvent | TransitionEvent) => void)[];
-    end?:       (els: Element[], event: AnimationEvent | TransitionEvent) => void | ((els: Element[], event: AnimationEvent | TransitionEvent) => void)[];
-    iteration?: (els: Element[], event: AnimationEvent) => void | ((els: Element[], event: AnimationEvent) => void)[];
-    run?:       (els: Element[], event: TransitionEvent) => void | ((els: Element[], event: TransitionEvent) => void)[];
+    start?:     (event: AnimationEvent | TransitionEvent) => void | ((event: AnimationEvent | TransitionEvent) => void)[];
+    cancel?:    (event: AnimationEvent | TransitionEvent) => void | ((event: AnimationEvent | TransitionEvent) => void)[];
+    end?:       (event: AnimationEvent | TransitionEvent) => void | ((event: AnimationEvent | TransitionEvent) => void)[];
+    iteration?: (event: AnimationEvent) => void | ((event: AnimationEvent) => void)[];
+    run?:       (event: TransitionEvent) => void | ((event: TransitionEvent) => void)[];
   }
 }
 

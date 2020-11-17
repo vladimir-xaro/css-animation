@@ -417,19 +417,19 @@ var CSSClassAnimations = /** @class */ (function () {
         }
     }
     CSSClassAnimations.prototype.__mutationStartListener = function (event) {
-        this.emitter.emit('start', this.els, event);
+        this.emitter.emit('start', this, event);
     };
     CSSClassAnimations.prototype.__mutationCancelListener = function (event) {
-        this.emitter.emit('cancel', this.els, event);
+        this.emitter.emit('cancel', this, event);
     };
     CSSClassAnimations.prototype.__mutationEndListener = function (event) {
-        this.emitter.emit('end', this.els, event);
+        this.emitter.emit('end', this, event);
     };
     CSSClassAnimations.prototype.__mutationIterationListener = function (event) {
-        this.emitter.emit('iteration', this.els, event);
+        this.emitter.emit('iteration', this, event);
     };
     CSSClassAnimations.prototype.__mutationRunListener = function (event) {
-        this.emitter.emit('run', this.els, event);
+        this.emitter.emit('run', this, event);
     };
     CSSClassAnimations.prototype.addEvent = function (domEventKey) {
         var e_4, _a;
@@ -624,19 +624,19 @@ var animation = new ___WEBPACK_IMPORTED_MODULE_1__.default({
     //   'transitionend'
     // ],
     on: {
-        start: function (els, event) {
+        start: function (event) {
             console.log('[start]', event);
         },
-        cancel: function (els, event) {
+        cancel: function (event) {
             console.log('[cancel]', event);
         },
-        end: function (els, event) {
+        end: function (event) {
             console.log('[end]', event);
         },
-        iteration: function (els, event) {
+        iteration: function (event) {
             console.log('[iteration]', event);
         },
-        run: function (els, event) {
+        run: function (event) {
             console.log('[run]', event);
         },
     }
