@@ -4,8 +4,11 @@ export interface I_CSSClassAnimations {
   els:      Element[];
   emitter:  I_EventEmitter;
 
-  add(domEventKey: T_DOMEventsKeys): void;
-  remove(domEventKey: T_DOMEventsKeys): void;
+  addEvent(domEventKey: T_DOMEventsKeys): void;
+  removeEvent(domEventKey: T_DOMEventsKeys): void;
+  addClass(...classes: string[]): Element[];
+  removeClass(...classes: string[]): Element[];
+  css(obj: object): Element[];
   on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void;
 }
 

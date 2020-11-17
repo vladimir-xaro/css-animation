@@ -301,7 +301,7 @@ var EventEmitter = /** @class */ (function () {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EventEmitter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EventEmitter */ "./node_modules/@xaro/event-emitter/src/EventEmitter.ts");
-;
+
 /* harmony default export */ __webpack_exports__["default"] = (_EventEmitter__WEBPACK_IMPORTED_MODULE_0__.default);
 
 
@@ -331,6 +331,26 @@ var __values = (undefined && undefined.__values) || function(o) {
         }
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+var __read = (undefined && undefined.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (undefined && undefined.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
 };
 
 
@@ -411,7 +431,7 @@ var CSSClassAnimations = /** @class */ (function () {
     CSSClassAnimations.prototype.__mutationRunListener = function (event) {
         this.emitter.emit('run', this.els, event);
     };
-    CSSClassAnimations.prototype.add = function (domEventKey) {
+    CSSClassAnimations.prototype.addEvent = function (domEventKey) {
         var e_4, _a;
         if (!this.allow.includes(domEventKey)) {
             return;
@@ -430,7 +450,7 @@ var CSSClassAnimations = /** @class */ (function () {
             finally { if (e_4) throw e_4.error; }
         }
     };
-    CSSClassAnimations.prototype.remove = function (domEventKey) {
+    CSSClassAnimations.prototype.removeEvent = function (domEventKey) {
         var e_5, _a;
         if (!this.allow.includes(domEventKey)) {
             return;
@@ -448,6 +468,67 @@ var CSSClassAnimations = /** @class */ (function () {
             }
             finally { if (e_5) throw e_5.error; }
         }
+    };
+    CSSClassAnimations.prototype.addClass = function () {
+        var e_6, _a, _b;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i] = arguments[_i];
+        }
+        try {
+            for (var _c = __values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                (_b = el.classList).add.apply(_b, __spread(classes));
+            }
+        }
+        catch (e_6_1) { e_6 = { error: e_6_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_6) throw e_6.error; }
+        }
+        return this.els;
+    };
+    CSSClassAnimations.prototype.removeClass = function () {
+        var e_7, _a, _b;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i] = arguments[_i];
+        }
+        try {
+            for (var _c = __values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                (_b = el.classList).remove.apply(_b, __spread(classes));
+            }
+        }
+        catch (e_7_1) { e_7 = { error: e_7_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_7) throw e_7.error; }
+        }
+        return this.els;
+    };
+    CSSClassAnimations.prototype.css = function (obj) {
+        var e_8, _a;
+        try {
+            for (var _b = __values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                for (var key in obj) {
+                    el.style[key] = obj[key];
+                }
+            }
+        }
+        catch (e_8_1) { e_8 = { error: e_8_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_8) throw e_8.error; }
+        }
+        return this.els;
     };
     CSSClassAnimations.prototype.on = function (eventKey, cb) {
         this.emitter.subscribe(eventKey, cb);
@@ -611,7 +692,7 @@ window.animation = animation;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CSSClassAnimations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CSSClassAnimations */ "./src/CSSClassAnimations.ts");
-;
+
 /* harmony default export */ __webpack_exports__["default"] = (_CSSClassAnimations__WEBPACK_IMPORTED_MODULE_0__.default);
 
 

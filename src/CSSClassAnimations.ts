@@ -58,7 +58,7 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
     this.emitter.emit('run', this.els, event);
   }
 
-  add(domEventKey: T_DOMEventsKeys) {
+  addEvent(domEventKey: T_DOMEventsKeys) {
     if (! this.allow.includes(domEventKey)) {
       return;
     }
@@ -68,7 +68,7 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
     }
   }
 
-  remove(domEventKey: T_DOMEventsKeys) {
+  removeEvent(domEventKey: T_DOMEventsKeys) {
     if (! this.allow.includes(domEventKey)) {
       return;
     }
@@ -76,6 +76,31 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
     for (const el of this.els) {
       el.removeEventListener(domEventKey, this[eventsListeners[domEventKey]]);
     }
+  }
+
+  addClass(...classes: string[]): Element[] {
+    for (const el of this.els) {
+      el.classList.add(...classes);
+    }
+
+    return this.els;
+  }
+
+  removeClass(...classes: string[]): Element[] {
+    for (const el of this.els) {
+      el.classList.remove(...classes);
+    }
+
+    return this.els;
+  }
+
+  css(obj: object): Element[] {
+    for (const el of this.els) {
+      for (const key in obj) {
+        (el as HTMLElement).style[key] = obj[key];
+      }
+    }
+    return this.els;
   }
 
   on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]) {

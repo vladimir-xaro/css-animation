@@ -88,11 +88,28 @@ const animation = new CSSClassAnimations({
 > - **disallow**: Adds all handlers except the specified ones
 
 ## Methods
-- **add(domEventKey: T_DOMEventsKeys): void**
-Adds listener to elements
+- **addEvent(domEventKey: T_DOMEventsKeys): void**
+Adds listener to the elements
 ***
-- **remove(domEventKey: T_DOMEventsKeys): void**
+- **removeEvent(domEventKey: T_DOMEventsKeys): void**
 Remove listener from elements (calls removeEventListener, but callbacks remain in the object)
+***
+- **addClass(...classes: string[]): Element[]**
+Adds classes to the elements and returns array of this elements
+***
+- **removeClass(...classes: string[]): Element[]**
+Removes classes from the elements and returns array of this elements
+***
+- **css(obj: object): Element[]**
+Sets the style attribute property of each element in the instance and returns array of this elements
+  ```ts
+    new CSSClassAnimations({
+      el: '.el'
+    }).css({
+      display:  'block',
+      width:    '300px'
+    });
+  ```
 ***
 - **on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void**
 Adds callback functions to an event by its key
@@ -120,8 +137,10 @@ export interface I_CSSClassAnimations {
   els:      Element[];
   emitter:  I_EventEmitter;
 
-  add(domEventKey: T_DOMEventsKeys): void;
-  remove(domEventKey: T_DOMEventsKeys): void;
+  addEvent(domEventKey: T_DOMEventsKeys): void;
+  removeEvent(domEventKey: T_DOMEventsKeys): void;
+  addClass(...classes: string[]): Element[];
+  removeClass(...classes: string[]): Element[];
   on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void;
 }
 
