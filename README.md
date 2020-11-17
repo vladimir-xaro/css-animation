@@ -1,11 +1,11 @@
-# @xaro/css-animations
+# @xaro/css-class-animations
 
 Micro lib for css animations with events
 
 ## Install
 
 ```sh
-$ npm install @xaro/css-animations
+$ npm install @xaro/css-class-animations
 ```
 
 ## Usage
