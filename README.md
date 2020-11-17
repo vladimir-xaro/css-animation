@@ -69,7 +69,7 @@ class Modal {
 
 ## Advanced usage
 
-*When an object is initialized, without the "allow" and "disallow" properties, all animation and transition events are hung on the transferred elements.*
+*When an object is initialized, without the "allow" and "disallow" properties, all animation and transition events are set ups on the passed elements.*
 
 *If there are many objects, this can load the client's device.*
 
