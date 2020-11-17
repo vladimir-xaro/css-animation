@@ -47,6 +47,6 @@
     "webpack-merge": "^5.4.0"
   },
   "dependencies": {
-    "@xaro/event-emitter": "github:vladimir-xaro/event-emitter#dev"
+    "@xaro/event-emitter": "^1.4.3"
   }
 }
