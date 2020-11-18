@@ -4,10 +4,11 @@ import CSSClassAnimations from "./";
 
 const animation = new CSSClassAnimations({
   el: '.el',
-  allow: [
-    'transitionend',
-    'animationiteration'
-  ],
+  // allow: [
+  //   'transitionend',
+  //   'animationiteration'
+  // ],
+  allow: 'transitionend',
   // disallow: [
   //   'animationiteration',
   //   'transitionend'

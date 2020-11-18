@@ -20,9 +20,11 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
     }
 
     if (config.allow) {
-      this.allow = config.allow.filter(value => events.includes(value));
+      // this.allow = config.allow.filter(value => events.includes(value));
+      this.allow = (Array.isArray(config.allow) ? config.allow : [ config.allow ]).filter(value => events.includes(value));
     } else if (config.disallow) {
-      this.allow = events.filter(value => !config.disallow!.includes(value as T_DOMEventsKeys));
+      // this.allow = events.filter(value => !config.disallow!.includes(value as T_DOMEventsKeys));
+      this.allow = (Array.isArray(config.disallow) ? config.disallow : [ config.disallow ]).filter(value => events.includes(value));
     } else {
       this.allow = events;
     }

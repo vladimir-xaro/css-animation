@@ -8,5 +8,6 @@
 /webpack
 
 /src/index.dev.ts
+/src/scss
 package-lock.json
 tsconfig.json

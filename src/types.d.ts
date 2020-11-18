@@ -14,8 +14,8 @@ export interface I_CSSClassAnimations {
 
 export interface I_CSSClassAnimationsConstructorConfig {
   el: Element | Element[] | string | string[];
-  allow?:     T_DOMEventsKeys[];
-  disallow?:  T_DOMEventsKeys[];
+  allow?:     T_DOMEventsKeys | T_DOMEventsKeys[];
+  disallow?:  T_DOMEventsKeys | T_DOMEventsKeys[];
   on?: {
     start?:     (event: AnimationEvent | TransitionEvent) => void | ((event: AnimationEvent | TransitionEvent) => void)[];
     cancel?:    (event: AnimationEvent | TransitionEvent) => void | ((event: AnimationEvent | TransitionEvent) => void)[];

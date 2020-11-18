@@ -379,10 +379,12 @@ var CSSClassAnimations = /** @class */ (function () {
             (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.addTo)(this.els, config.el);
         }
         if (config.allow) {
-            this.allow = config.allow.filter(function (value) { return _variables__WEBPACK_IMPORTED_MODULE_1__.events.includes(value); });
+            // this.allow = config.allow.filter(value => events.includes(value));
+            this.allow = (Array.isArray(config.allow) ? config.allow : [config.allow]).filter(function (value) { return _variables__WEBPACK_IMPORTED_MODULE_1__.events.includes(value); });
         }
         else if (config.disallow) {
-            this.allow = _variables__WEBPACK_IMPORTED_MODULE_1__.events.filter(function (value) { return !config.disallow.includes(value); });
+            // this.allow = events.filter(value => !config.disallow!.includes(value as T_DOMEventsKeys));
+            this.allow = (Array.isArray(config.disallow) ? config.disallow : [config.disallow]).filter(function (value) { return _variables__WEBPACK_IMPORTED_MODULE_1__.events.includes(value); });
         }
         else {
             this.allow = _variables__WEBPACK_IMPORTED_MODULE_1__.events;
@@ -615,10 +617,11 @@ var _a, _b;
 
 var animation = new ___WEBPACK_IMPORTED_MODULE_1__.default({
     el: '.el',
-    allow: [
-        'transitionend',
-        'animationiteration'
-    ],
+    // allow: [
+    //   'transitionend',
+    //   'animationiteration'
+    // ],
+    allow: 'transitionend',
     // disallow: [
     //   'animationiteration',
     //   'transitionend'
