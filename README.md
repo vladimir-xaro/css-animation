@@ -11,7 +11,7 @@ $ npm install @xaro/css-class-animations
 ## Usage
 
 ```ts
-const animation = new CSSClassAnimationss({
+const animation = new CSSClassAnimations({
   el: '.el', // string | string[] | Element | Element[]
   on: {
     start: (event: AnimationEvent | TransitionEvent) => {
