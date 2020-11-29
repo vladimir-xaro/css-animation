@@ -111,7 +111,9 @@ Adds callback functions to an event by its key
 
 ***
 
-- The library uses [@xaro/event-emitter](https://www.npmjs.com/package/@xaro/event-emitter) and you can use all its features through the **emitter** property of the CSSClassAnimations object instance
+## The library uses
+- [@xaro/micro-dom](https://www.npmjs.com/package/@xaro/micro-dom), all its features through the **els** property of the CSSClassAnimations object instance
+- [@xaro/event-emitter](https://www.npmjs.com/package/@xaro/event-emitter), all its features through the **emitter** property of the CSSClassAnimations object instance
   ```ts
   const animation = new CSSClassAnimations({
     el: '.el'
@@ -121,7 +123,6 @@ Adds callback functions to an event by its key
   });
   animation.emitter.emit('start', /* ... */);
   ```
-
 
 ## Interfaces & Types
 
