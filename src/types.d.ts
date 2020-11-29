@@ -1,19 +1,19 @@
 import { I_EventEmitter, T_Func } from "@xaro/event-emitter";
+import { I_MicroDOM } from "@xaro/micro-dom";
 
 export interface I_CSSClassAnimations {
-  els:      Element[];
+  els:      I_MicroDOM;
   emitter:  I_EventEmitter;
 
   addEvent(domEventKey: T_DOMEventsKeys): void;
   removeEvent(domEventKey: T_DOMEventsKeys): void;
   addClass(...classes: string[]): Element[];
   removeClass(...classes: string[]): Element[];
-  css(obj: object): Element[];
   on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void;
 }
 
 export interface I_CSSClassAnimationsConstructorConfig {
-  el: Element | Element[] | string | string[];
+  el:         string | Element | Array<string | Element>;
   allow?:     T_DOMEventsKeys | T_DOMEventsKeys[];
   disallow?:  T_DOMEventsKeys | T_DOMEventsKeys[];
   on?: {

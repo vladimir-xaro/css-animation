@@ -1,4 +1,4 @@
-export const eventsListeners = {
+export const eventsListeners: { [key: string]: string } = {
   animationstart:     '__mutationStartListener',
   animationcancel:    '__mutationCancelListener',
   animationend:       '__mutationEndListener',

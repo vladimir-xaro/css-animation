@@ -1,29 +1,25 @@
-import { I_CSSClassAnimations as I_CSSClassAnimations, I_CSSClassAnimationsConstructorConfig, T_DOMEventsKeys, T_EmitterEventsKeys } from "./types";
+import { I_CSSClassAnimations, I_CSSClassAnimationsConstructorConfig, T_DOMEventsKeys, T_EmitterEventsKeys } from "./types";
 import EventEmitter, { I_EventEmitter, T_Func } from "@xaro/event-emitter";
+import _, { I_MicroDOM } from "@xaro/micro-dom";
 import { events, eventsListeners } from "./variables";
-import { addTo } from "./helpers";
 
 export default class CSSClassAnimations implements I_CSSClassAnimations {
-  els:      Element[] = [];
+  els:      I_MicroDOM;
   emitter:  I_EventEmitter;
   allow:    string[];
 
   constructor(config: I_CSSClassAnimationsConstructorConfig) {
     this.emitter = new EventEmitter(config.on);
-    
+
     if (Array.isArray(config.el)) {
-      for (const val of config.el) {
-        addTo(this.els, val);
-      }
+      this.els = _(...config.el);
     } else {
-      addTo(this.els, config.el);
+      this.els = _(config.el);
     }
 
     if (config.allow) {
-      // this.allow = config.allow.filter(value => events.includes(value));
       this.allow = (Array.isArray(config.allow) ? config.allow : [ config.allow ]).filter(value => events.includes(value));
     } else if (config.disallow) {
-      // this.allow = events.filter(value => !config.disallow!.includes(value as T_DOMEventsKeys));
       this.allow = (Array.isArray(config.disallow) ? config.disallow : [ config.disallow ]).filter(value => events.includes(value));
     } else {
       this.allow = events;
@@ -93,15 +89,6 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
       el.classList.remove(...classes);
     }
 
-    return this.els;
-  }
-
-  css(obj: object): Element[] {
-    for (const el of this.els) {
-      for (const key in obj) {
-        (el as HTMLElement).style[key] = obj[key];
-      }
-    }
     return this.els;
   }
 
