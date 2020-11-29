@@ -12,7 +12,7 @@ return /******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 994:
+/***/ 864:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 
@@ -274,20 +274,18 @@ var EventEmitter = /** @class */ (function () {
 
 /* harmony default export */ var src = (src_EventEmitter);
 
-;// CONCATENATED MODULE: ./src/variables.ts
-var eventsListeners = {
-    animationstart: '__mutationStartListener',
-    animationcancel: '__mutationCancelListener',
-    animationend: '__mutationEndListener',
-    animationiteration: '__mutationIterationListener',
-    transitionstart: '__mutationStartListener',
-    transitioncancel: '__mutationCancelListener',
-    transitionend: '__mutationEndListener',
-    transitionrun: '__mutationRunListener'
+;// CONCATENATED MODULE: ./node_modules/@xaro/micro-dom/src/helpers.ts
+var helpers_values = (undefined && undefined.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-var events = Object.keys(eventsListeners);
-
-;// CONCATENATED MODULE: ./src/helpers.ts
 var helpers_read = (undefined && undefined.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -308,17 +306,95 @@ var helpers_spread = (undefined && undefined.__spread) || function () {
     for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(helpers_read(arguments[i]));
     return ar;
 };
-function addTo(origin, value) {
-    if (typeof value === 'string') {
-        origin.push.apply(origin, helpers_spread(document.querySelectorAll(value)));
+function getEls(target) {
+    var e_1, _a;
+    var els = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        els[_i - 1] = arguments[_i];
     }
-    else if (value instanceof Element) {
-        origin.push(value);
+    var arr = [];
+    try {
+        for (var els_1 = helpers_values(els), els_1_1 = els_1.next(); !els_1_1.done; els_1_1 = els_1.next()) {
+            var el = els_1_1.value;
+            if (typeof el === 'string') {
+                var nodes = target.querySelectorAll(el);
+                arr.push.apply(arr, helpers_spread(nodes));
+            }
+            else if (el instanceof Element) {
+                arr.push(el);
+            }
+        }
+    }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    finally {
+        try {
+            if (els_1_1 && !els_1_1.done && (_a = els_1.return)) _a.call(els_1);
+        }
+        finally { if (e_1) throw e_1.error; }
+    }
+    return arr;
+}
+function recursiveAppend(el) {
+    var e_2, _a;
+    var content = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        content[_i - 1] = arguments[_i];
+    }
+    try {
+        for (var content_1 = helpers_values(content), content_1_1 = content_1.next(); !content_1_1.done; content_1_1 = content_1.next()) {
+            var entity = content_1_1.value;
+            if (Array.isArray(entity)) {
+                recursiveAppend.apply(void 0, helpers_spread([el], entity));
+            }
+            else {
+                el.append(entity);
+            }
+        }
+    }
+    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    finally {
+        try {
+            if (content_1_1 && !content_1_1.done && (_a = content_1.return)) _a.call(content_1);
+        }
+        finally { if (e_2) throw e_2.error; }
     }
 }
 
-;// CONCATENATED MODULE: ./src/CSSClassAnimations.ts
-var CSSClassAnimations_values = (undefined && undefined.__values) || function(o) {
+;// CONCATENATED MODULE: ./node_modules/@xaro/micro-dom/src/MicroDOM.ts
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var MicroDOM_read = (undefined && undefined.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var MicroDOM_spread = (undefined && undefined.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(MicroDOM_read(arguments[i]));
+    return ar;
+};
+var MicroDOM_values = (undefined && undefined.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
     if (o && typeof o.length === "number") return {
@@ -329,6 +405,270 @@ var CSSClassAnimations_values = (undefined && undefined.__values) || function(o)
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
+
+var MicroDOM = /** @class */ (function (_super) {
+    __extends(MicroDOM, _super);
+    function MicroDOM() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return _super.apply(this, MicroDOM_spread(args)) || this;
+    }
+    MicroDOM.prototype.get = function () {
+        var e_1, _a;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var newInstance = new MicroDOM;
+        if (this.length) {
+            try {
+                for (var _b = MicroDOM_values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var el = _c.value;
+                    newInstance.push.apply(newInstance, MicroDOM_spread(getEls.apply(void 0, MicroDOM_spread([el], args))));
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+        }
+        else {
+            newInstance.push.apply(newInstance, MicroDOM_spread(getEls.apply(void 0, MicroDOM_spread([document], args))));
+        }
+        return newInstance;
+    };
+    MicroDOM.prototype.create = function () {
+        var e_2, _a;
+        var entities = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            entities[_i] = arguments[_i];
+        }
+        var newInstance = new MicroDOM;
+        try {
+            for (var entities_1 = MicroDOM_values(entities), entities_1_1 = entities_1.next(); !entities_1_1.done; entities_1_1 = entities_1.next()) {
+                var entity = entities_1_1.value;
+                if (typeof entity === 'string') {
+                    newInstance.push(document.createElement(entity));
+                }
+                else if (entity instanceof Object) {
+                    var el = document.createElement(entity.tagName || 'div');
+                    if (entity.content) {
+                        if (Array.isArray(entity.content)) {
+                            recursiveAppend.apply(void 0, MicroDOM_spread([el], entity.content));
+                        }
+                        else {
+                            recursiveAppend(el, entity.content);
+                        }
+                    }
+                    newInstance.push(el);
+                }
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (entities_1_1 && !entities_1_1.done && (_a = entities_1.return)) _a.call(entities_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        return newInstance;
+    };
+    MicroDOM.prototype.empty = function () {
+        var e_3, _a;
+        try {
+            for (var _b = MicroDOM_values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                el.innerHTML = '';
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.append = function () {
+        var e_4, _a;
+        var append = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            append[_i] = arguments[_i];
+        }
+        try {
+            for (var _b = MicroDOM_values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                recursiveAppend.apply(void 0, MicroDOM_spread([el], append));
+            }
+        }
+        catch (e_4_1) { e_4 = { error: e_4_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_4) throw e_4.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.addClass = function () {
+        var e_5, _a, _b;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i] = arguments[_i];
+        }
+        try {
+            for (var _c = MicroDOM_values(this), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                (_b = el.classList).add.apply(_b, MicroDOM_spread(classes));
+            }
+        }
+        catch (e_5_1) { e_5 = { error: e_5_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_5) throw e_5.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.removeClass = function () {
+        var e_6, _a, _b;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i] = arguments[_i];
+        }
+        try {
+            for (var _c = MicroDOM_values(this), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                (_b = el.classList).remove.apply(_b, MicroDOM_spread(classes));
+            }
+        }
+        catch (e_6_1) { e_6 = { error: e_6_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_6) throw e_6.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.toggleClass = function (classname) {
+        var e_7, _a;
+        try {
+            for (var _b = MicroDOM_values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                el.classList.toggle(classname);
+            }
+        }
+        catch (e_7_1) { e_7 = { error: e_7_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_7) throw e_7.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.css = function (obj) {
+        var e_8, _a;
+        try {
+            for (var _b = MicroDOM_values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                for (var key in obj) {
+                    el.style[key] = obj[key];
+                }
+            }
+        }
+        catch (e_8_1) { e_8 = { error: e_8_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_8) throw e_8.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.attr = function (obj) {
+        var e_9, _a;
+        try {
+            for (var _b = MicroDOM_values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                for (var key in obj) {
+                    el.setAttribute(key, obj[key]);
+                }
+            }
+        }
+        catch (e_9_1) { e_9 = { error: e_9_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_9) throw e_9.error; }
+        }
+        return this;
+    };
+    return MicroDOM;
+}(Array));
+/* harmony default export */ var src_MicroDOM = (MicroDOM);
+
+;// CONCATENATED MODULE: ./node_modules/@xaro/micro-dom/src/entry.ts
+var entry_read = (undefined && undefined.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var entry_spread = (undefined && undefined.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(entry_read(arguments[i]));
+    return ar;
+};
+
+
+function _() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    if (args instanceof src_MicroDOM) {
+        return args;
+    }
+    return new (src_MicroDOM.bind.apply(src_MicroDOM, entry_spread([void 0], getEls.apply(void 0, entry_spread([document], args)))))();
+}
+
+;// CONCATENATED MODULE: ./node_modules/@xaro/micro-dom/src/index.ts
+
+/* harmony default export */ var micro_dom_src = (_);
+
+;// CONCATENATED MODULE: ./src/variables.ts
+var eventsListeners = {
+    animationstart: '__mutationStartListener',
+    animationcancel: '__mutationCancelListener',
+    animationend: '__mutationEndListener',
+    animationiteration: '__mutationIterationListener',
+    transitionstart: '__mutationStartListener',
+    transitioncancel: '__mutationCancelListener',
+    transitionend: '__mutationEndListener',
+    transitionrun: '__mutationRunListener'
+};
+var events = Object.keys(eventsListeners);
+
+;// CONCATENATED MODULE: ./src/CSSClassAnimations.ts
 var CSSClassAnimations_read = (undefined && undefined.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -349,38 +689,34 @@ var CSSClassAnimations_spread = (undefined && undefined.__spread) || function ()
     for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(CSSClassAnimations_read(arguments[i]));
     return ar;
 };
+var CSSClassAnimations_values = (undefined && undefined.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
 
 
 
 var CSSClassAnimations = /** @class */ (function () {
     function CSSClassAnimations(config) {
-        var e_1, _a, e_2, _b, e_3, _c;
-        this.els = [];
+        var e_1, _a, e_2, _b;
         this.emitter = new src(config.on);
         if (Array.isArray(config.el)) {
-            try {
-                for (var _d = CSSClassAnimations_values(config.el), _e = _d.next(); !_e.done; _e = _d.next()) {
-                    var val = _e.value;
-                    addTo(this.els, val);
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_e && !_e.done && (_a = _d.return)) _a.call(_d);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
+            this.els = micro_dom_src.apply(void 0, CSSClassAnimations_spread(config.el));
         }
         else {
-            addTo(this.els, config.el);
+            this.els = micro_dom_src(config.el);
         }
         if (config.allow) {
-            // this.allow = config.allow.filter(value => events.includes(value));
             this.allow = (Array.isArray(config.allow) ? config.allow : [config.allow]).filter(function (value) { return events.includes(value); });
         }
         else if (config.disallow) {
-            // this.allow = events.filter(value => !config.disallow!.includes(value as T_DOMEventsKeys));
             this.allow = (Array.isArray(config.disallow) ? config.disallow : [config.disallow]).filter(function (value) { return events.includes(value); });
         }
         else {
@@ -390,29 +726,29 @@ var CSSClassAnimations = /** @class */ (function () {
             this[eventsListeners[key]] = this[eventsListeners[key]].bind(this);
         }
         try {
-            for (var _f = CSSClassAnimations_values(this.els), _g = _f.next(); !_g.done; _g = _f.next()) {
-                var el = _g.value;
+            for (var _c = CSSClassAnimations_values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
                 try {
-                    for (var _h = (e_3 = void 0, CSSClassAnimations_values(this.allow)), _j = _h.next(); !_j.done; _j = _h.next()) {
-                        var event_1 = _j.value;
+                    for (var _e = (e_2 = void 0, CSSClassAnimations_values(this.allow)), _f = _e.next(); !_f.done; _f = _e.next()) {
+                        var event_1 = _f.value;
                         el.addEventListener(event_1, this[eventsListeners[event_1]]);
                     }
                 }
-                catch (e_3_1) { e_3 = { error: e_3_1 }; }
+                catch (e_2_1) { e_2 = { error: e_2_1 }; }
                 finally {
                     try {
-                        if (_j && !_j.done && (_c = _h.return)) _c.call(_h);
+                        if (_f && !_f.done && (_b = _e.return)) _b.call(_e);
                     }
-                    finally { if (e_3) throw e_3.error; }
+                    finally { if (e_2) throw e_2.error; }
                 }
             }
         }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
         finally {
             try {
-                if (_g && !_g.done && (_b = _f.return)) _b.call(_f);
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
             }
-            finally { if (e_2) throw e_2.error; }
+            finally { if (e_1) throw e_1.error; }
         }
     }
     CSSClassAnimations.prototype.__mutationStartListener = function (event) {
@@ -431,7 +767,7 @@ var CSSClassAnimations = /** @class */ (function () {
         this.emitter.emit('run', this, event);
     };
     CSSClassAnimations.prototype.addEvent = function (domEventKey) {
-        var e_4, _a;
+        var e_3, _a;
         if (!this.allow.includes(domEventKey)) {
             return;
         }
@@ -439,6 +775,25 @@ var CSSClassAnimations = /** @class */ (function () {
             for (var _b = CSSClassAnimations_values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var el = _c.value;
                 el.addEventListener(domEventKey, this[eventsListeners[domEventKey]]);
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+    };
+    CSSClassAnimations.prototype.removeEvent = function (domEventKey) {
+        var e_4, _a;
+        if (!this.allow.includes(domEventKey)) {
+            return;
+        }
+        try {
+            for (var _b = CSSClassAnimations_values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                el.removeEventListener(domEventKey, this[eventsListeners[domEventKey]]);
             }
         }
         catch (e_4_1) { e_4 = { error: e_4_1 }; }
@@ -449,27 +804,8 @@ var CSSClassAnimations = /** @class */ (function () {
             finally { if (e_4) throw e_4.error; }
         }
     };
-    CSSClassAnimations.prototype.removeEvent = function (domEventKey) {
-        var e_5, _a;
-        if (!this.allow.includes(domEventKey)) {
-            return;
-        }
-        try {
-            for (var _b = CSSClassAnimations_values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var el = _c.value;
-                el.removeEventListener(domEventKey, this[eventsListeners[domEventKey]]);
-            }
-        }
-        catch (e_5_1) { e_5 = { error: e_5_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_5) throw e_5.error; }
-        }
-    };
     CSSClassAnimations.prototype.addClass = function () {
-        var e_6, _a, _b;
+        var e_5, _a, _b;
         var classes = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             classes[_i] = arguments[_i];
@@ -480,17 +816,17 @@ var CSSClassAnimations = /** @class */ (function () {
                 (_b = el.classList).add.apply(_b, CSSClassAnimations_spread(classes));
             }
         }
-        catch (e_6_1) { e_6 = { error: e_6_1 }; }
+        catch (e_5_1) { e_5 = { error: e_5_1 }; }
         finally {
             try {
                 if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
             }
-            finally { if (e_6) throw e_6.error; }
+            finally { if (e_5) throw e_5.error; }
         }
         return this.els;
     };
     CSSClassAnimations.prototype.removeClass = function () {
-        var e_7, _a, _b;
+        var e_6, _a, _b;
         var classes = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             classes[_i] = arguments[_i];
@@ -501,31 +837,12 @@ var CSSClassAnimations = /** @class */ (function () {
                 (_b = el.classList).remove.apply(_b, CSSClassAnimations_spread(classes));
             }
         }
-        catch (e_7_1) { e_7 = { error: e_7_1 }; }
+        catch (e_6_1) { e_6 = { error: e_6_1 }; }
         finally {
             try {
                 if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
             }
-            finally { if (e_7) throw e_7.error; }
-        }
-        return this.els;
-    };
-    CSSClassAnimations.prototype.css = function (obj) {
-        var e_8, _a;
-        try {
-            for (var _b = CSSClassAnimations_values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var el = _c.value;
-                for (var key in obj) {
-                    el.style[key] = obj[key];
-                }
-            }
-        }
-        catch (e_8_1) { e_8 = { error: e_8_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_8) throw e_8.error; }
+            finally { if (e_6) throw e_6.error; }
         }
         return this.els;
     };
@@ -590,7 +907,7 @@ var CSSClassAnimations = /** @class */ (function () {
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(994);
+/******/ 	return __webpack_require__(864);
 /******/ })()
 .default;
 });
