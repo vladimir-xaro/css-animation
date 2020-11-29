@@ -105,17 +105,6 @@ Adds classes to the elements and returns array of this elements
 - **removeClass(...classes: string[]): Element[]**
 Removes classes from the elements and returns array of this elements
 ***
-- **css(obj: object): Element[]**
-Sets the style attribute property of each element in the instance and returns array of this elements
-  ```ts
-    new CSSClassAnimations({
-      el: '.el'
-    }).css({
-      display:  'block',
-      width:    '300px'
-    });
-  ```
-***
 - **on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void**
 Adds callback functions to an event by its key
   > *The first parameter does not need to specify the DOM event key, but the CSSClassAnimations event key (* **start**, **cancel**, **end**, **iteration**, **run** *)*
@@ -139,9 +128,10 @@ Adds callback functions to an event by its key
 *types.d.ts*
 ```ts
 import { I_EventEmitter, T_Func } from "@xaro/event-emitter";
+import { I_MicroDOM } from "@xaro/micro-dom";
 
 export interface I_CSSClassAnimations {
-  els:      Element[];
+  els:      I_MicroDOM;
   emitter:  I_EventEmitter;
 
   addEvent(domEventKey: T_DOMEventsKeys): void;
@@ -152,7 +142,7 @@ export interface I_CSSClassAnimations {
 }
 
 export interface I_CSSClassAnimationsConstructorConfig {
-  el: Element | Element[] | string | string[];
+  el:         string | Element | Array<string | Element>;
   allow?:     T_DOMEventsKeys | T_DOMEventsKeys[];
   disallow?:  T_DOMEventsKeys | T_DOMEventsKeys[];
   on?: {

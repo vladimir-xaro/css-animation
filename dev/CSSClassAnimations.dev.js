@@ -943,14 +943,6 @@ var CSSClassAnimations = /** @class */ (function () {
         }
         return this.els;
     };
-    // css(obj: object): Element[] {
-    //   for (const el of this.els) {
-    //     for (const key in obj) {
-    //       (el as HTMLElement).style[key] = obj[key];
-    //     }
-    //   }
-    //   return this.els;
-    // }
     CSSClassAnimations.prototype.on = function (eventKey, cb) {
         this.emitter.subscribe(eventKey, cb);
     };
