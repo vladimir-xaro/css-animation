@@ -307,10 +307,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/CSSClassAnimations.ts":
-/*!***********************************!*\
-  !*** ./src/CSSClassAnimations.ts ***!
-  \***********************************/
+/***/ "./node_modules/@xaro/micro-dom/src/MicroDOM.ts":
+/*!******************************************************!*\
+  !*** ./node_modules/@xaro/micro-dom/src/MicroDOM.ts ***!
+  \******************************************************/
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -318,9 +318,334 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _xaro_event_emitter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @xaro/event-emitter */ "./node_modules/@xaro/event-emitter/src/index.ts");
-/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./variables */ "./src/variables.ts");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers */ "./src/helpers.ts");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ "./node_modules/@xaro/micro-dom/src/helpers.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __read = (undefined && undefined.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (undefined && undefined.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+var __values = (undefined && undefined.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+
+var MicroDOM = /** @class */ (function (_super) {
+    __extends(MicroDOM, _super);
+    function MicroDOM() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return _super.apply(this, __spread(args)) || this;
+    }
+    MicroDOM.prototype.get = function () {
+        var e_1, _a;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var newInstance = new MicroDOM;
+        if (this.length) {
+            try {
+                for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var el = _c.value;
+                    newInstance.push.apply(newInstance, __spread(_helpers__WEBPACK_IMPORTED_MODULE_0__.getEls.apply(void 0, __spread([el], args))));
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+        }
+        else {
+            newInstance.push.apply(newInstance, __spread(_helpers__WEBPACK_IMPORTED_MODULE_0__.getEls.apply(void 0, __spread([document], args))));
+        }
+        return newInstance;
+    };
+    MicroDOM.prototype.create = function () {
+        var e_2, _a;
+        var entities = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            entities[_i] = arguments[_i];
+        }
+        var newInstance = new MicroDOM;
+        try {
+            for (var entities_1 = __values(entities), entities_1_1 = entities_1.next(); !entities_1_1.done; entities_1_1 = entities_1.next()) {
+                var entity = entities_1_1.value;
+                if (typeof entity === 'string') {
+                    newInstance.push(document.createElement(entity));
+                }
+                else if (entity instanceof Object) {
+                    var el = document.createElement(entity.tagName || 'div');
+                    if (entity.content) {
+                        if (Array.isArray(entity.content)) {
+                            _helpers__WEBPACK_IMPORTED_MODULE_0__.recursiveAppend.apply(void 0, __spread([el], entity.content));
+                        }
+                        else {
+                            (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.recursiveAppend)(el, entity.content);
+                        }
+                    }
+                    newInstance.push(el);
+                }
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (entities_1_1 && !entities_1_1.done && (_a = entities_1.return)) _a.call(entities_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        return newInstance;
+    };
+    MicroDOM.prototype.empty = function () {
+        var e_3, _a;
+        try {
+            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                el.innerHTML = '';
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.append = function () {
+        var e_4, _a;
+        var append = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            append[_i] = arguments[_i];
+        }
+        try {
+            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                _helpers__WEBPACK_IMPORTED_MODULE_0__.recursiveAppend.apply(void 0, __spread([el], append));
+            }
+        }
+        catch (e_4_1) { e_4 = { error: e_4_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_4) throw e_4.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.addClass = function () {
+        var e_5, _a, _b;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i] = arguments[_i];
+        }
+        try {
+            for (var _c = __values(this), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                (_b = el.classList).add.apply(_b, __spread(classes));
+            }
+        }
+        catch (e_5_1) { e_5 = { error: e_5_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_5) throw e_5.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.removeClass = function () {
+        var e_6, _a, _b;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i] = arguments[_i];
+        }
+        try {
+            for (var _c = __values(this), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                (_b = el.classList).remove.apply(_b, __spread(classes));
+            }
+        }
+        catch (e_6_1) { e_6 = { error: e_6_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_6) throw e_6.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.toggleClass = function (classname) {
+        var e_7, _a;
+        try {
+            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                el.classList.toggle(classname);
+            }
+        }
+        catch (e_7_1) { e_7 = { error: e_7_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_7) throw e_7.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.css = function (obj) {
+        var e_8, _a;
+        try {
+            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                for (var key in obj) {
+                    // (el as HTMLElement).style[key] = obj[key];
+                }
+            }
+        }
+        catch (e_8_1) { e_8 = { error: e_8_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_8) throw e_8.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.attr = function (obj) {
+        var e_9, _a;
+        try {
+            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                for (var key in obj) {
+                    el.setAttribute(key, obj[key]);
+                }
+            }
+        }
+        catch (e_9_1) { e_9 = { error: e_9_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_9) throw e_9.error; }
+        }
+        return this;
+    };
+    return MicroDOM;
+}(Array));
+/* harmony default export */ __webpack_exports__["default"] = (MicroDOM);
+
+
+/***/ }),
+
+/***/ "./node_modules/@xaro/micro-dom/src/entry.ts":
+/*!***************************************************!*\
+  !*** ./node_modules/@xaro/micro-dom/src/entry.ts ***!
+  \***************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ _; }
+/* harmony export */ });
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ "./node_modules/@xaro/micro-dom/src/helpers.ts");
+/* harmony import */ var _MicroDOM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MicroDOM */ "./node_modules/@xaro/micro-dom/src/MicroDOM.ts");
+var __read = (undefined && undefined.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (undefined && undefined.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+
+
+function _() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    if (args instanceof _MicroDOM__WEBPACK_IMPORTED_MODULE_1__.default) {
+        return args;
+    }
+    return new (_MicroDOM__WEBPACK_IMPORTED_MODULE_1__.default.bind.apply(_MicroDOM__WEBPACK_IMPORTED_MODULE_1__.default, __spread([void 0], _helpers__WEBPACK_IMPORTED_MODULE_0__.getEls.apply(void 0, __spread([document], args)))))();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@xaro/micro-dom/src/helpers.ts":
+/*!*****************************************************!*\
+  !*** ./node_modules/@xaro/micro-dom/src/helpers.ts ***!
+  \*****************************************************/
+/*! namespace exports */
+/*! export getEls [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export recursiveAppend [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getEls": function() { return /* binding */ getEls; },
+/* harmony export */   "recursiveAppend": function() { return /* binding */ recursiveAppend; }
+/* harmony export */ });
 var __values = (undefined && undefined.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
@@ -352,210 +677,95 @@ var __spread = (undefined && undefined.__spread) || function () {
     for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
     return ar;
 };
-
-
-
-var CSSClassAnimations = /** @class */ (function () {
-    function CSSClassAnimations(config) {
-        var e_1, _a, e_2, _b, e_3, _c;
-        this.els = [];
-        this.emitter = new _xaro_event_emitter__WEBPACK_IMPORTED_MODULE_0__.default(config.on);
-        if (Array.isArray(config.el)) {
-            try {
-                for (var _d = __values(config.el), _e = _d.next(); !_e.done; _e = _d.next()) {
-                    var val = _e.value;
-                    (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.addTo)(this.els, val);
-                }
+function getEls(target) {
+    var e_1, _a;
+    var els = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        els[_i - 1] = arguments[_i];
+    }
+    var arr = [];
+    try {
+        for (var els_1 = __values(els), els_1_1 = els_1.next(); !els_1_1.done; els_1_1 = els_1.next()) {
+            var el = els_1_1.value;
+            if (typeof el === 'string') {
+                var nodes = target.querySelectorAll(el);
+                arr.push.apply(arr, __spread(nodes));
             }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_e && !_e.done && (_a = _d.return)) _a.call(_d);
-                }
-                finally { if (e_1) throw e_1.error; }
+            else if (el instanceof Element) {
+                arr.push(el);
             }
-        }
-        else {
-            (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.addTo)(this.els, config.el);
-        }
-        if (config.allow) {
-            // this.allow = config.allow.filter(value => events.includes(value));
-            this.allow = (Array.isArray(config.allow) ? config.allow : [config.allow]).filter(function (value) { return _variables__WEBPACK_IMPORTED_MODULE_1__.events.includes(value); });
-        }
-        else if (config.disallow) {
-            // this.allow = events.filter(value => !config.disallow!.includes(value as T_DOMEventsKeys));
-            this.allow = (Array.isArray(config.disallow) ? config.disallow : [config.disallow]).filter(function (value) { return _variables__WEBPACK_IMPORTED_MODULE_1__.events.includes(value); });
-        }
-        else {
-            this.allow = _variables__WEBPACK_IMPORTED_MODULE_1__.events;
-        }
-        for (var key in _variables__WEBPACK_IMPORTED_MODULE_1__.eventsListeners) {
-            this[_variables__WEBPACK_IMPORTED_MODULE_1__.eventsListeners[key]] = this[_variables__WEBPACK_IMPORTED_MODULE_1__.eventsListeners[key]].bind(this);
-        }
-        try {
-            for (var _f = __values(this.els), _g = _f.next(); !_g.done; _g = _f.next()) {
-                var el = _g.value;
-                try {
-                    for (var _h = (e_3 = void 0, __values(this.allow)), _j = _h.next(); !_j.done; _j = _h.next()) {
-                        var event_1 = _j.value;
-                        el.addEventListener(event_1, this[_variables__WEBPACK_IMPORTED_MODULE_1__.eventsListeners[event_1]]);
-                    }
-                }
-                catch (e_3_1) { e_3 = { error: e_3_1 }; }
-                finally {
-                    try {
-                        if (_j && !_j.done && (_c = _h.return)) _c.call(_h);
-                    }
-                    finally { if (e_3) throw e_3.error; }
-                }
-            }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (_g && !_g.done && (_b = _f.return)) _b.call(_f);
-            }
-            finally { if (e_2) throw e_2.error; }
         }
     }
-    CSSClassAnimations.prototype.__mutationStartListener = function (event) {
-        this.emitter.emit('start', this, event);
-    };
-    CSSClassAnimations.prototype.__mutationCancelListener = function (event) {
-        this.emitter.emit('cancel', this, event);
-    };
-    CSSClassAnimations.prototype.__mutationEndListener = function (event) {
-        this.emitter.emit('end', this, event);
-    };
-    CSSClassAnimations.prototype.__mutationIterationListener = function (event) {
-        this.emitter.emit('iteration', this, event);
-    };
-    CSSClassAnimations.prototype.__mutationRunListener = function (event) {
-        this.emitter.emit('run', this, event);
-    };
-    CSSClassAnimations.prototype.addEvent = function (domEventKey) {
-        var e_4, _a;
-        if (!this.allow.includes(domEventKey)) {
-            return;
-        }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    finally {
         try {
-            for (var _b = __values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var el = _c.value;
-                el.addEventListener(domEventKey, this[_variables__WEBPACK_IMPORTED_MODULE_1__.eventsListeners[domEventKey]]);
+            if (els_1_1 && !els_1_1.done && (_a = els_1.return)) _a.call(els_1);
+        }
+        finally { if (e_1) throw e_1.error; }
+    }
+    return arr;
+}
+function recursiveAppend(el) {
+    var e_2, _a;
+    var content = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        content[_i - 1] = arguments[_i];
+    }
+    try {
+        for (var content_1 = __values(content), content_1_1 = content_1.next(); !content_1_1.done; content_1_1 = content_1.next()) {
+            var entity = content_1_1.value;
+            if (Array.isArray(entity)) {
+                recursiveAppend.apply(void 0, __spread([el], entity));
+            }
+            else {
+                el.append(entity);
             }
         }
-        catch (e_4_1) { e_4 = { error: e_4_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_4) throw e_4.error; }
-        }
-    };
-    CSSClassAnimations.prototype.removeEvent = function (domEventKey) {
-        var e_5, _a;
-        if (!this.allow.includes(domEventKey)) {
-            return;
-        }
+    }
+    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    finally {
         try {
-            for (var _b = __values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var el = _c.value;
-                el.removeEventListener(domEventKey, this[_variables__WEBPACK_IMPORTED_MODULE_1__.eventsListeners[domEventKey]]);
-            }
+            if (content_1_1 && !content_1_1.done && (_a = content_1.return)) _a.call(content_1);
         }
-        catch (e_5_1) { e_5 = { error: e_5_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_5) throw e_5.error; }
-        }
-    };
-    CSSClassAnimations.prototype.addClass = function () {
-        var e_6, _a, _b;
-        var classes = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            classes[_i] = arguments[_i];
-        }
-        try {
-            for (var _c = __values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var el = _d.value;
-                (_b = el.classList).add.apply(_b, __spread(classes));
-            }
-        }
-        catch (e_6_1) { e_6 = { error: e_6_1 }; }
-        finally {
-            try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-            }
-            finally { if (e_6) throw e_6.error; }
-        }
-        return this.els;
-    };
-    CSSClassAnimations.prototype.removeClass = function () {
-        var e_7, _a, _b;
-        var classes = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            classes[_i] = arguments[_i];
-        }
-        try {
-            for (var _c = __values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var el = _d.value;
-                (_b = el.classList).remove.apply(_b, __spread(classes));
-            }
-        }
-        catch (e_7_1) { e_7 = { error: e_7_1 }; }
-        finally {
-            try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-            }
-            finally { if (e_7) throw e_7.error; }
-        }
-        return this.els;
-    };
-    CSSClassAnimations.prototype.css = function (obj) {
-        var e_8, _a;
-        try {
-            for (var _b = __values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var el = _c.value;
-                for (var key in obj) {
-                    el.style[key] = obj[key];
-                }
-            }
-        }
-        catch (e_8_1) { e_8 = { error: e_8_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_8) throw e_8.error; }
-        }
-        return this.els;
-    };
-    CSSClassAnimations.prototype.on = function (eventKey, cb) {
-        this.emitter.subscribe(eventKey, cb);
-    };
-    return CSSClassAnimations;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (CSSClassAnimations);
+        finally { if (e_2) throw e_2.error; }
+    }
+}
 
 
 /***/ }),
 
-/***/ "./src/helpers.ts":
-/*!************************!*\
-  !*** ./src/helpers.ts ***!
-  \************************/
+/***/ "./node_modules/@xaro/micro-dom/src/index.ts":
+/*!***************************************************!*\
+  !*** ./node_modules/@xaro/micro-dom/src/index.ts ***!
+  \***************************************************/
 /*! namespace exports */
-/*! export addTo [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addTo": function() { return /* binding */ addTo; }
-/* harmony export */ });
+/* harmony import */ var _entry__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./entry */ "./node_modules/@xaro/micro-dom/src/entry.ts");
+
+/* harmony default export */ __webpack_exports__["default"] = (_entry__WEBPACK_IMPORTED_MODULE_0__.default);
+
+
+/***/ }),
+
+/***/ "./src/CSSClassAnimations.ts":
+/*!***********************************!*\
+  !*** ./src/CSSClassAnimations.ts ***!
+  \***********************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _xaro_event_emitter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @xaro/event-emitter */ "./node_modules/@xaro/event-emitter/src/index.ts");
+/* harmony import */ var _xaro_micro_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @xaro/micro-dom */ "./node_modules/@xaro/micro-dom/src/index.ts");
+/* harmony import */ var _variables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./variables */ "./src/variables.ts");
 var __read = (undefined && undefined.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -576,14 +786,195 @@ var __spread = (undefined && undefined.__spread) || function () {
     for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
     return ar;
 };
-function addTo(origin, value) {
-    if (typeof value === 'string') {
-        origin.push.apply(origin, __spread(document.querySelectorAll(value)));
+var __values = (undefined && undefined.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+
+
+
+var CSSClassAnimations = /** @class */ (function () {
+    function CSSClassAnimations(config) {
+        var e_1, _a, e_2, _b;
+        this.emitter = new _xaro_event_emitter__WEBPACK_IMPORTED_MODULE_0__.default(config.on);
+        // if (Array.isArray(config.el)) {
+        //   for (const val of config.el) {
+        //     addTo(this.els, val);
+        //   }
+        // } else {
+        //   addTo(this.els, config.el);
+        // }
+        if (Array.isArray(config.el)) {
+            this.els = _xaro_micro_dom__WEBPACK_IMPORTED_MODULE_1__.default.apply(void 0, __spread(config.el));
+        }
+        else {
+            this.els = (0,_xaro_micro_dom__WEBPACK_IMPORTED_MODULE_1__.default)(config.el);
+        }
+        if (config.allow) {
+            this.allow = (Array.isArray(config.allow) ? config.allow : [config.allow]).filter(function (value) { return _variables__WEBPACK_IMPORTED_MODULE_2__.events.includes(value); });
+        }
+        else if (config.disallow) {
+            this.allow = (Array.isArray(config.disallow) ? config.disallow : [config.disallow]).filter(function (value) { return _variables__WEBPACK_IMPORTED_MODULE_2__.events.includes(value); });
+        }
+        else {
+            this.allow = _variables__WEBPACK_IMPORTED_MODULE_2__.events;
+        }
+        for (var key in _variables__WEBPACK_IMPORTED_MODULE_2__.eventsListeners) {
+            this[_variables__WEBPACK_IMPORTED_MODULE_2__.eventsListeners[key]] = this[_variables__WEBPACK_IMPORTED_MODULE_2__.eventsListeners[key]].bind(this);
+        }
+        try {
+            for (var _c = __values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                try {
+                    for (var _e = (e_2 = void 0, __values(this.allow)), _f = _e.next(); !_f.done; _f = _e.next()) {
+                        var event_1 = _f.value;
+                        el.addEventListener(event_1, this[_variables__WEBPACK_IMPORTED_MODULE_2__.eventsListeners[event_1]]);
+                    }
+                }
+                catch (e_2_1) { e_2 = { error: e_2_1 }; }
+                finally {
+                    try {
+                        if (_f && !_f.done && (_b = _e.return)) _b.call(_e);
+                    }
+                    finally { if (e_2) throw e_2.error; }
+                }
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
     }
-    else if (value instanceof Element) {
-        origin.push(value);
-    }
-}
+    CSSClassAnimations.prototype.__mutationStartListener = function (event) {
+        this.emitter.emit('start', this, event);
+    };
+    CSSClassAnimations.prototype.__mutationCancelListener = function (event) {
+        this.emitter.emit('cancel', this, event);
+    };
+    CSSClassAnimations.prototype.__mutationEndListener = function (event) {
+        this.emitter.emit('end', this, event);
+    };
+    CSSClassAnimations.prototype.__mutationIterationListener = function (event) {
+        this.emitter.emit('iteration', this, event);
+    };
+    CSSClassAnimations.prototype.__mutationRunListener = function (event) {
+        this.emitter.emit('run', this, event);
+    };
+    CSSClassAnimations.prototype.addEvent = function (domEventKey) {
+        var e_3, _a;
+        if (!this.allow.includes(domEventKey)) {
+            return;
+        }
+        try {
+            for (var _b = __values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                el.addEventListener(domEventKey, this[_variables__WEBPACK_IMPORTED_MODULE_2__.eventsListeners[domEventKey]]);
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+    };
+    CSSClassAnimations.prototype.removeEvent = function (domEventKey) {
+        var e_4, _a;
+        if (!this.allow.includes(domEventKey)) {
+            return;
+        }
+        try {
+            for (var _b = __values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                el.removeEventListener(domEventKey, this[_variables__WEBPACK_IMPORTED_MODULE_2__.eventsListeners[domEventKey]]);
+            }
+        }
+        catch (e_4_1) { e_4 = { error: e_4_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_4) throw e_4.error; }
+        }
+    };
+    CSSClassAnimations.prototype.addClass = function () {
+        var e_5, _a, _b;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i] = arguments[_i];
+        }
+        try {
+            for (var _c = __values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                (_b = el.classList).add.apply(_b, __spread(classes));
+            }
+        }
+        catch (e_5_1) { e_5 = { error: e_5_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_5) throw e_5.error; }
+        }
+        return this.els;
+    };
+    CSSClassAnimations.prototype.removeClass = function () {
+        var e_6, _a, _b;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i] = arguments[_i];
+        }
+        try {
+            for (var _c = __values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                (_b = el.classList).remove.apply(_b, __spread(classes));
+            }
+        }
+        catch (e_6_1) { e_6 = { error: e_6_1 }; }
+        finally {
+            try {
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+            }
+            finally { if (e_6) throw e_6.error; }
+        }
+        return this.els;
+    };
+    CSSClassAnimations.prototype.css = function (obj) {
+        var e_7, _a;
+        try {
+            for (var _b = __values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                for (var key in obj) {
+                    el.style[key] = obj[key];
+                }
+            }
+        }
+        catch (e_7_1) { e_7 = { error: e_7_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_7) throw e_7.error; }
+        }
+        return this.els;
+    };
+    CSSClassAnimations.prototype.on = function (eventKey, cb) {
+        this.emitter.subscribe(eventKey, cb);
+    };
+    return CSSClassAnimations;
+}());
+/* harmony default export */ __webpack_exports__["default"] = (CSSClassAnimations);
 
 
 /***/ }),
