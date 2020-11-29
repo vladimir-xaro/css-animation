@@ -1,8 +1,7 @@
 import { I_CSSClassAnimations, I_CSSClassAnimationsConstructorConfig, T_DOMEventsKeys, T_EmitterEventsKeys } from "./types";
 import EventEmitter, { I_EventEmitter, T_Func } from "@xaro/event-emitter";
 import _, { I_MicroDOM } from "@xaro/micro-dom";
-import { events, eventsListeners } from "./variables";
-// import { addTo } from "./helpers";
+import { eventsListeners, events } from "./variables";
 
 export default class CSSClassAnimations implements I_CSSClassAnimations {
   els:      I_MicroDOM;
@@ -11,14 +10,6 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
 
   constructor(config: I_CSSClassAnimationsConstructorConfig) {
     this.emitter = new EventEmitter(config.on);
-    
-    // if (Array.isArray(config.el)) {
-    //   for (const val of config.el) {
-    //     addTo(this.els, val);
-    //   }
-    // } else {
-    //   addTo(this.els, config.el);
-    // }
 
     if (Array.isArray(config.el)) {
       this.els = _(...config.el);
@@ -101,14 +92,14 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
     return this.els;
   }
 
-  css(obj: object): Element[] {
-    for (const el of this.els) {
-      for (const key in obj) {
-        (el as HTMLElement).style[key] = obj[key];
-      }
-    }
-    return this.els;
-  }
+  // css(obj: object): Element[] {
+  //   for (const el of this.els) {
+  //     for (const key in obj) {
+  //       (el as HTMLElement).style[key] = obj[key];
+  //     }
+  //   }
+  //   return this.els;
+  // }
 
   on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]) {
     this.emitter.subscribe(eventKey, cb);

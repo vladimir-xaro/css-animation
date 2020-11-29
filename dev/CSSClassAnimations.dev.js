@@ -539,7 +539,7 @@ var MicroDOM = /** @class */ (function (_super) {
             for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var el = _c.value;
                 for (var key in obj) {
-                    // (el as HTMLElement).style[key] = obj[key];
+                    el.style[key] = obj[key];
                 }
             }
         }
@@ -804,13 +804,6 @@ var CSSClassAnimations = /** @class */ (function () {
     function CSSClassAnimations(config) {
         var e_1, _a, e_2, _b;
         this.emitter = new _xaro_event_emitter__WEBPACK_IMPORTED_MODULE_0__.default(config.on);
-        // if (Array.isArray(config.el)) {
-        //   for (const val of config.el) {
-        //     addTo(this.els, val);
-        //   }
-        // } else {
-        //   addTo(this.els, config.el);
-        // }
         if (Array.isArray(config.el)) {
             this.els = _xaro_micro_dom__WEBPACK_IMPORTED_MODULE_1__.default.apply(void 0, __spread(config.el));
         }
@@ -950,25 +943,14 @@ var CSSClassAnimations = /** @class */ (function () {
         }
         return this.els;
     };
-    CSSClassAnimations.prototype.css = function (obj) {
-        var e_7, _a;
-        try {
-            for (var _b = __values(this.els), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var el = _c.value;
-                for (var key in obj) {
-                    el.style[key] = obj[key];
-                }
-            }
-        }
-        catch (e_7_1) { e_7 = { error: e_7_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_7) throw e_7.error; }
-        }
-        return this.els;
-    };
+    // css(obj: object): Element[] {
+    //   for (const el of this.els) {
+    //     for (const key in obj) {
+    //       (el as HTMLElement).style[key] = obj[key];
+    //     }
+    //   }
+    //   return this.els;
+    // }
     CSSClassAnimations.prototype.on = function (eventKey, cb) {
         this.emitter.subscribe(eventKey, cb);
     };
