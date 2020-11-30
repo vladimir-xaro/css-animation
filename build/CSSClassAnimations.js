@@ -804,48 +804,6 @@ var CSSClassAnimations = /** @class */ (function () {
             finally { if (e_4) throw e_4.error; }
         }
     };
-    CSSClassAnimations.prototype.addClass = function () {
-        var e_5, _a, _b;
-        var classes = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            classes[_i] = arguments[_i];
-        }
-        try {
-            for (var _c = CSSClassAnimations_values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var el = _d.value;
-                (_b = el.classList).add.apply(_b, CSSClassAnimations_spread(classes));
-            }
-        }
-        catch (e_5_1) { e_5 = { error: e_5_1 }; }
-        finally {
-            try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-            }
-            finally { if (e_5) throw e_5.error; }
-        }
-        return this.els;
-    };
-    CSSClassAnimations.prototype.removeClass = function () {
-        var e_6, _a, _b;
-        var classes = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            classes[_i] = arguments[_i];
-        }
-        try {
-            for (var _c = CSSClassAnimations_values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var el = _d.value;
-                (_b = el.classList).remove.apply(_b, CSSClassAnimations_spread(classes));
-            }
-        }
-        catch (e_6_1) { e_6 = { error: e_6_1 }; }
-        finally {
-            try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-            }
-            finally { if (e_6) throw e_6.error; }
-        }
-        return this.els;
-    };
     CSSClassAnimations.prototype.on = function (eventKey, cb) {
         this.emitter.subscribe(eventKey, cb);
     };
