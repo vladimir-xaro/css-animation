@@ -76,22 +76,6 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
     }
   }
 
-  addClass(...classes: string[]): Element[] {
-    for (const el of this.els) {
-      el.classList.add(...classes);
-    }
-
-    return this.els;
-  }
-
-  removeClass(...classes: string[]): Element[] {
-    for (const el of this.els) {
-      el.classList.remove(...classes);
-    }
-
-    return this.els;
-  }
-
   on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]) {
     this.emitter.subscribe(eventKey, cb);
   }

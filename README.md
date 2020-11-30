@@ -36,6 +36,7 @@ const animation = new CSSClassAnimations({
 
 ***
 **ATTENTION**
+
 Сallback function will be called for each element when the event occurs
 ***
 
@@ -99,12 +100,6 @@ Adds listener to the elements
 - **removeEvent(domEventKey: T_DOMEventsKeys): void**
 Remove listener from elements (calls removeEventListener, but callbacks remain in the object)
 ***
-- **addClass(...classes: string[]): Element[]**
-Adds classes to the elements and returns array of this elements
-***
-- **removeClass(...classes: string[]): Element[]**
-Removes classes from the elements and returns array of this elements
-***
 - **on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void**
 Adds callback functions to an event by its key
   > *The first parameter does not need to specify the DOM event key, but the CSSClassAnimations event key (* **start**, **cancel**, **end**, **iteration**, **run** *)*
@@ -137,8 +132,6 @@ export interface I_CSSClassAnimations {
 
   addEvent(domEventKey: T_DOMEventsKeys): void;
   removeEvent(domEventKey: T_DOMEventsKeys): void;
-  addClass(...classes: string[]): Element[];
-  removeClass(...classes: string[]): Element[];
   on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void;
 }
 
