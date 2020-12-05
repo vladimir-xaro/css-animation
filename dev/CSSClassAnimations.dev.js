@@ -13,12 +13,9 @@ return /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/scss/index.scss":
-/*!*****************************!*\
+/*!*****************************!*
   !*** ./src/scss/index.scss ***!
   \*****************************/
-/*! namespace exports */
-/*! exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -28,13 +25,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/@xaro/event-emitter/src/EventEmitter.ts":
-/*!**************************************************************!*\
+/*!**************************************************************!*
   !*** ./node_modules/@xaro/event-emitter/src/EventEmitter.ts ***!
   \**************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -290,13 +283,9 @@ var EventEmitter = /** @class */ (function () {
 /***/ }),
 
 /***/ "./node_modules/@xaro/event-emitter/src/index.ts":
-/*!*******************************************************!*\
+/*!*******************************************************!*
   !*** ./node_modules/@xaro/event-emitter/src/index.ts ***!
   \*******************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -308,13 +297,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/@xaro/micro-dom/src/MicroDOM.ts":
-/*!******************************************************!*\
+/*!******************************************************!*
   !*** ./node_modules/@xaro/micro-dom/src/MicroDOM.ts ***!
   \******************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -379,7 +364,7 @@ var MicroDOM = /** @class */ (function (_super) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        var newInstance = new MicroDOM;
+        var newInstance = new MicroDOM();
         if (this.length) {
             try {
                 for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -406,7 +391,7 @@ var MicroDOM = /** @class */ (function (_super) {
         for (var _i = 0; _i < arguments.length; _i++) {
             entities[_i] = arguments[_i];
         }
-        var newInstance = new MicroDOM;
+        var newInstance = new MicroDOM();
         try {
             for (var entities_1 = __values(entities), entities_1_1 = entities_1.next(); !entities_1_1.done; entities_1_1 = entities_1.next()) {
                 var entity = entities_1_1.value;
@@ -453,16 +438,12 @@ var MicroDOM = /** @class */ (function (_super) {
         }
         return this;
     };
-    MicroDOM.prototype.append = function () {
+    MicroDOM.prototype.text = function (text) {
         var e_4, _a;
-        var append = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            append[_i] = arguments[_i];
-        }
         try {
             for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var el = _c.value;
-                _helpers__WEBPACK_IMPORTED_MODULE_0__.recursiveAppend.apply(void 0, __spread([el], append));
+                el.textContent = text || '';
             }
         }
         catch (e_4_1) { e_4 = { error: e_4_1 }; }
@@ -474,28 +455,28 @@ var MicroDOM = /** @class */ (function (_super) {
         }
         return this;
     };
-    MicroDOM.prototype.addClass = function () {
-        var e_5, _a, _b;
-        var classes = [];
+    MicroDOM.prototype.append = function () {
+        var e_5, _a;
+        var append = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            classes[_i] = arguments[_i];
+            append[_i] = arguments[_i];
         }
         try {
-            for (var _c = __values(this), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var el = _d.value;
-                (_b = el.classList).add.apply(_b, __spread(classes));
+            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                _helpers__WEBPACK_IMPORTED_MODULE_0__.recursiveAppend.apply(void 0, __spread([el], append));
             }
         }
         catch (e_5_1) { e_5 = { error: e_5_1 }; }
         finally {
             try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
             }
             finally { if (e_5) throw e_5.error; }
         }
         return this;
     };
-    MicroDOM.prototype.removeClass = function () {
+    MicroDOM.prototype.addClass = function () {
         var e_6, _a, _b;
         var classes = [];
         for (var _i = 0; _i < arguments.length; _i++) {
@@ -504,7 +485,7 @@ var MicroDOM = /** @class */ (function (_super) {
         try {
             for (var _c = __values(this), _d = _c.next(); !_d.done; _d = _c.next()) {
                 var el = _d.value;
-                (_b = el.classList).remove.apply(_b, __spread(classes));
+                (_b = el.classList).add.apply(_b, __spread(classes));
             }
         }
         catch (e_6_1) { e_6 = { error: e_6_1 }; }
@@ -516,31 +497,33 @@ var MicroDOM = /** @class */ (function (_super) {
         }
         return this;
     };
-    MicroDOM.prototype.toggleClass = function (classname) {
-        var e_7, _a;
+    MicroDOM.prototype.removeClass = function () {
+        var e_7, _a, _b;
+        var classes = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classes[_i] = arguments[_i];
+        }
         try {
-            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var el = _c.value;
-                el.classList.toggle(classname);
+            for (var _c = __values(this), _d = _c.next(); !_d.done; _d = _c.next()) {
+                var el = _d.value;
+                (_b = el.classList).remove.apply(_b, __spread(classes));
             }
         }
         catch (e_7_1) { e_7 = { error: e_7_1 }; }
         finally {
             try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
             }
             finally { if (e_7) throw e_7.error; }
         }
         return this;
     };
-    MicroDOM.prototype.css = function (obj) {
+    MicroDOM.prototype.toggleClass = function (classname) {
         var e_8, _a;
         try {
             for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var el = _c.value;
-                for (var key in obj) {
-                    el.style[key] = obj[key];
-                }
+                el.classList.toggle(classname);
             }
         }
         catch (e_8_1) { e_8 = { error: e_8_1 }; }
@@ -552,8 +535,102 @@ var MicroDOM = /** @class */ (function (_super) {
         }
         return this;
     };
+    MicroDOM.prototype.hasClass = function (classname, reqtForAll) {
+        var e_9, _a, e_10, _b;
+        if (reqtForAll === void 0) { reqtForAll = false; }
+        if (reqtForAll) { // The presence of a class for each element of the set
+            var number = 0;
+            try {
+                for (var _c = __values(this), _d = _c.next(); !_d.done; _d = _c.next()) {
+                    var el = _d.value;
+                    if (el.classList.contains(classname)) {
+                        number++;
+                    }
+                }
+            }
+            catch (e_9_1) { e_9 = { error: e_9_1 }; }
+            finally {
+                try {
+                    if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+                }
+                finally { if (e_9) throw e_9.error; }
+            }
+            return number === this.length;
+        }
+        else { // the presence of a class for at least one element of the set
+            try {
+                for (var _e = __values(this), _f = _e.next(); !_f.done; _f = _e.next()) {
+                    var el = _f.value;
+                    if (el.classList.contains(classname)) {
+                        return true;
+                    }
+                }
+            }
+            catch (e_10_1) { e_10 = { error: e_10_1 }; }
+            finally {
+                try {
+                    if (_f && !_f.done && (_b = _e.return)) _b.call(_e);
+                }
+                finally { if (e_10) throw e_10.error; }
+            }
+            return false;
+        }
+    };
+    MicroDOM.prototype.addEventListener = function (type, listener, options) {
+        var e_11, _a;
+        try {
+            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                el.addEventListener(type, listener, options);
+            }
+        }
+        catch (e_11_1) { e_11 = { error: e_11_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_11) throw e_11.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.removeEventListener = function (type, listener, options) {
+        var e_12, _a;
+        try {
+            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                el.removeEventListener(type, listener, options);
+            }
+        }
+        catch (e_12_1) { e_12 = { error: e_12_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_12) throw e_12.error; }
+        }
+        return this;
+    };
+    MicroDOM.prototype.css = function (obj) {
+        var e_13, _a;
+        try {
+            for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var el = _c.value;
+                for (var key in obj) {
+                    el.style[key] = obj[key];
+                }
+            }
+        }
+        catch (e_13_1) { e_13 = { error: e_13_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_13) throw e_13.error; }
+        }
+        return this;
+    };
     MicroDOM.prototype.attr = function (obj) {
-        var e_9, _a;
+        var e_14, _a;
         try {
             for (var _b = __values(this), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var el = _c.value;
@@ -562,13 +639,29 @@ var MicroDOM = /** @class */ (function (_super) {
                 }
             }
         }
-        catch (e_9_1) { e_9 = { error: e_9_1 }; }
+        catch (e_14_1) { e_14 = { error: e_14_1 }; }
         finally {
             try {
                 if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
             }
-            finally { if (e_9) throw e_9.error; }
+            finally { if (e_14) throw e_14.error; }
         }
+        return this;
+    };
+    MicroDOM.prototype.nextTick = function () {
+        var _this = this;
+        var cbs = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            cbs[_i] = arguments[_i];
+        }
+        var arr = cbs;
+        var current = cbs.shift();
+        current && setTimeout(function () {
+            current();
+            if (arr.length) {
+                _this.nextTick.apply(_this, __spread(arr));
+            }
+        }, 0);
         return this;
     };
     return MicroDOM;
@@ -579,13 +672,9 @@ var MicroDOM = /** @class */ (function (_super) {
 /***/ }),
 
 /***/ "./node_modules/@xaro/micro-dom/src/entry.ts":
-/*!***************************************************!*\
+/*!***************************************************!*
   !*** ./node_modules/@xaro/micro-dom/src/entry.ts ***!
   \***************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -631,14 +720,9 @@ function _() {
 /***/ }),
 
 /***/ "./node_modules/@xaro/micro-dom/src/helpers.ts":
-/*!*****************************************************!*\
+/*!*****************************************************!*
   !*** ./node_modules/@xaro/micro-dom/src/helpers.ts ***!
   \*****************************************************/
-/*! namespace exports */
-/*! export getEls [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export recursiveAppend [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -735,31 +819,30 @@ function recursiveAppend(el) {
 /***/ }),
 
 /***/ "./node_modules/@xaro/micro-dom/src/index.ts":
-/*!***************************************************!*\
+/*!***************************************************!*
   !*** ./node_modules/@xaro/micro-dom/src/index.ts ***!
   \***************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MicroDOM": function() { return /* reexport safe */ _MicroDOM__WEBPACK_IMPORTED_MODULE_1__.default; }
+/* harmony export */ });
 /* harmony import */ var _entry__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./entry */ "./node_modules/@xaro/micro-dom/src/entry.ts");
+/* harmony import */ var _MicroDOM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MicroDOM */ "./node_modules/@xaro/micro-dom/src/MicroDOM.ts");
 
 /* harmony default export */ __webpack_exports__["default"] = (_entry__WEBPACK_IMPORTED_MODULE_0__.default);
+// ===
+
+
 
 
 /***/ }),
 
 /***/ "./src/CSSClassAnimations.ts":
-/*!***********************************!*\
+/*!***********************************!*
   !*** ./src/CSSClassAnimations.ts ***!
   \***********************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -901,48 +984,6 @@ var CSSClassAnimations = /** @class */ (function () {
             finally { if (e_4) throw e_4.error; }
         }
     };
-    CSSClassAnimations.prototype.addClass = function () {
-        var e_5, _a, _b;
-        var classes = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            classes[_i] = arguments[_i];
-        }
-        try {
-            for (var _c = __values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var el = _d.value;
-                (_b = el.classList).add.apply(_b, __spread(classes));
-            }
-        }
-        catch (e_5_1) { e_5 = { error: e_5_1 }; }
-        finally {
-            try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-            }
-            finally { if (e_5) throw e_5.error; }
-        }
-        return this.els;
-    };
-    CSSClassAnimations.prototype.removeClass = function () {
-        var e_6, _a, _b;
-        var classes = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            classes[_i] = arguments[_i];
-        }
-        try {
-            for (var _c = __values(this.els), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var el = _d.value;
-                (_b = el.classList).remove.apply(_b, __spread(classes));
-            }
-        }
-        catch (e_6_1) { e_6 = { error: e_6_1 }; }
-        finally {
-            try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
-            }
-            finally { if (e_6) throw e_6.error; }
-        }
-        return this.els;
-    };
     CSSClassAnimations.prototype.on = function (eventKey, cb) {
         this.emitter.subscribe(eventKey, cb);
     };
@@ -954,13 +995,9 @@ var CSSClassAnimations = /** @class */ (function () {
 /***/ }),
 
 /***/ "./src/index.dev.ts":
-/*!**************************!*\
+/*!**************************!*
   !*** ./src/index.dev.ts ***!
   \**************************/
-/*! namespace exports */
-/*! export default [not provided] [used in CSSClassAnimations] [usage prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1049,13 +1086,9 @@ window.animation = animation;
 /***/ }),
 
 /***/ "./src/index.ts":
-/*!**********************!*\
+/*!**********************!*
   !*** ./src/index.ts ***!
   \**********************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1067,14 +1100,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./src/variables.ts":
-/*!**************************!*\
+/*!**************************!*
   !*** ./src/variables.ts ***!
   \**************************/
-/*! namespace exports */
-/*! export events [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export eventsListeners [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);

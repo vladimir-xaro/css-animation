@@ -1,3 +1,5 @@
+[![DeepScan grade](https://deepscan.io/api/teams/11657/projects/14877/branches/287085/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=11657&pid=14877&bid=287085)
+
 # @xaro/css-class-animations
 
 Micro lib for css animations with events
@@ -123,7 +125,7 @@ Adds callback functions to an event by its key
 
 *types.d.ts*
 ```ts
-import { I_EventEmitter, T_Func } from "@xaro/event-emitter";
+import { I_EventEmitter } from "@xaro/event-emitter";
 import { I_MicroDOM } from "@xaro/micro-dom";
 
 export interface I_CSSClassAnimations {
@@ -132,7 +134,7 @@ export interface I_CSSClassAnimations {
 
   addEvent(domEventKey: T_DOMEventsKeys): void;
   removeEvent(domEventKey: T_DOMEventsKeys): void;
-  on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void;
+  on(eventKey: T_EmitterEventsKeys, cb: Function | Function[]): void;
 }
 
 export interface I_CSSClassAnimationsConstructorConfig {

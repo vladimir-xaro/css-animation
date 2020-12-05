@@ -1,4 +1,4 @@
-import { I_EventEmitter, T_Func } from "@xaro/event-emitter";
+import { I_EventEmitter } from "@xaro/event-emitter";
 import { I_MicroDOM } from "@xaro/micro-dom";
 
 export interface I_CSSClassAnimations {
@@ -7,7 +7,7 @@ export interface I_CSSClassAnimations {
 
   addEvent(domEventKey: T_DOMEventsKeys): void;
   removeEvent(domEventKey: T_DOMEventsKeys): void;
-  on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void;
+  on(eventKey: T_EmitterEventsKeys, cb: Function | Function[]): void;
 }
 
 export interface I_CSSClassAnimationsConstructorConfig {

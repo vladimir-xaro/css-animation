@@ -1,5 +1,5 @@
 import { I_CSSClassAnimations, I_CSSClassAnimationsConstructorConfig, T_DOMEventsKeys, T_EmitterEventsKeys } from "./types";
-import EventEmitter, { I_EventEmitter, T_Func } from "@xaro/event-emitter";
+import EventEmitter, { I_EventEmitter } from "@xaro/event-emitter";
 import _, { I_MicroDOM } from "@xaro/micro-dom";
 import { events, eventsListeners } from "./variables";
 
@@ -76,7 +76,7 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
     }
   }
 
-  on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]) {
+  on(eventKey: T_EmitterEventsKeys, cb: Function | Function[]) {
     this.emitter.subscribe(eventKey, cb);
   }
 }
