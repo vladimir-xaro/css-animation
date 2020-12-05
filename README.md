@@ -102,7 +102,7 @@ Adds listener to the elements
 - **removeEvent(domEventKey: T_DOMEventsKeys): void**
 Remove listener from elements (calls removeEventListener, but callbacks remain in the object)
 ***
-- **on(eventKey: T_EmitterEventsKeys, cb: T_Func | T_Func[]): void**
+- **on(eventKey: T_EmitterEventsKeys, cb: Function | Function[]): void**
 Adds callback functions to an event by its key
   > *The first parameter does not need to specify the DOM event key, but the CSSClassAnimations event key (* **start**, **cancel**, **end**, **iteration**, **run** *)*
 
