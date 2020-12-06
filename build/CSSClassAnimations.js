@@ -863,19 +863,19 @@ var CSSClassAnimations = /** @class */ (function () {
         }
     }
     CSSClassAnimations.prototype.__mutationStartListener = function (event) {
-        this.emitter.emit('start', this, event);
+        this.emitter.emit('start', event);
     };
     CSSClassAnimations.prototype.__mutationCancelListener = function (event) {
-        this.emitter.emit('cancel', this, event);
+        this.emitter.emit('cancel', event);
     };
     CSSClassAnimations.prototype.__mutationEndListener = function (event) {
-        this.emitter.emit('end', this, event);
+        this.emitter.emit('end', event);
     };
     CSSClassAnimations.prototype.__mutationIterationListener = function (event) {
-        this.emitter.emit('iteration', this, event);
+        this.emitter.emit('iteration', event);
     };
     CSSClassAnimations.prototype.__mutationRunListener = function (event) {
-        this.emitter.emit('run', this, event);
+        this.emitter.emit('run', event);
     };
     CSSClassAnimations.prototype.addEvent = function (domEventKey) {
         var e_3, _a;

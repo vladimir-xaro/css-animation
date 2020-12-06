@@ -37,23 +37,23 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
   }
 
   protected __mutationStartListener(event: AnimationEvent | TransitionEvent) {
-    this.emitter.emit('start', this, event);
+    this.emitter.emit('start', event);
   }
 
   protected __mutationCancelListener(event: AnimationEvent | TransitionEvent) {
-    this.emitter.emit('cancel', this, event);
+    this.emitter.emit('cancel', event);
   }
 
   protected __mutationEndListener(event: AnimationEvent | TransitionEvent) {
-    this.emitter.emit('end', this, event);
+    this.emitter.emit('end', event);
   }
 
   protected __mutationIterationListener(event: AnimationEvent | TransitionEvent) {
-    this.emitter.emit('iteration', this, event);
+    this.emitter.emit('iteration', event);
   }
 
   protected __mutationRunListener(event: AnimationEvent | TransitionEvent) {
-    this.emitter.emit('run', this, event);
+    this.emitter.emit('run', event);
   }
 
   addEvent(domEventKey: T_DOMEventsKeys) {
