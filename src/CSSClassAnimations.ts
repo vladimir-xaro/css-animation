@@ -6,16 +6,12 @@ import { events, eventsListeners } from "./variables";
 export default class CSSClassAnimations implements I_CSSClassAnimations {
   els:      I_MicroDOM;
   emitter:  I_EventEmitter;
-  allow:    string[];
+  allow:    T_DOMEventsKeys[];
 
   constructor(config: I_CSSClassAnimationsConstructorConfig) {
     this.emitter = new EventEmitter(config.on);
 
-    if (Array.isArray(config.el)) {
-      this.els = _(...config.el);
-    } else {
-      this.els = _(config.el);
-    }
+    this.els = Array.isArray(config.el) ? _(...config.el) : _(config.el);
 
     if (config.allow) {
       this.allow = (Array.isArray(config.allow) ? config.allow : [ config.allow ]).filter(value => events.includes(value));
@@ -25,15 +21,9 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
       this.allow = events;
     }
 
-    for (const key in eventsListeners) {
-      this[eventsListeners[key]] = this[eventsListeners[key]].bind(this);
-    }
+    Object.keys(eventsListeners).forEach(key => this[eventsListeners[key]] = this[eventsListeners[key]].bind(this));
 
-    for (const el of this.els) {
-      for (const event of this.allow) {
-        el.addEventListener(event, this[eventsListeners[event]]);
-      }
-    }
+    this.els.forEach(el => this.allow.forEach(event => el.addEventListener(event, this[eventsListeners[event]])));
   }
 
   protected __mutationStartListener(event: AnimationEvent | TransitionEvent) {
@@ -57,23 +47,23 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
   }
 
   addEvent(domEventKey: T_DOMEventsKeys) {
-    if (! this.allow.includes(domEventKey)) {
+    if (!events.includes(domEventKey)) {
       return;
     }
+    
+    this.allow.push(domEventKey);
 
-    for (const el of this.els) {
-      el.addEventListener(domEventKey, this[eventsListeners[domEventKey]]);
-    }
+    this.els.forEach(el => el.addEventListener(domEventKey, this[eventsListeners[domEventKey]]));
   }
 
   removeEvent(domEventKey: T_DOMEventsKeys) {
-    if (! this.allow.includes(domEventKey)) {
+    if (!events.includes(domEventKey) || !this.allow.includes(domEventKey)) {
       return;
     }
 
-    for (const el of this.els) {
-      el.removeEventListener(domEventKey, this[eventsListeners[domEventKey]]);
-    }
+    this.allow.splice(this.allow.indexOf(domEventKey));
+
+    this.els.forEach(el => el.removeEventListener(domEventKey, this[eventsListeners[domEventKey]]));
   }
 
   on(eventKey: T_EmitterEventsKeys, cb: Function | Function[]) {

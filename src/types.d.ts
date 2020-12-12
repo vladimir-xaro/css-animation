@@ -4,6 +4,7 @@ import { I_MicroDOM } from "@xaro/micro-dom";
 export interface I_CSSClassAnimations {
   els:      I_MicroDOM;
   emitter:  I_EventEmitter;
+  allow:    T_DOMEventsKeys[];
 
   addEvent(domEventKey: T_DOMEventsKeys): void;
   removeEvent(domEventKey: T_DOMEventsKeys): void;

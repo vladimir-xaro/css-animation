@@ -1,3 +1,5 @@
+import { T_DOMEventsKeys } from "./types";
+
 export const eventsListeners: { [key: string]: string } = {
   animationstart:     '__mutationStartListener',
   animationcancel:    '__mutationCancelListener',
@@ -9,4 +11,4 @@ export const eventsListeners: { [key: string]: string } = {
   transitionrun:      '__mutationRunListener'
 };
 
-export const events = Object.keys(eventsListeners);
+export const events: T_DOMEventsKeys[] = Object.keys(eventsListeners) as T_DOMEventsKeys[];
