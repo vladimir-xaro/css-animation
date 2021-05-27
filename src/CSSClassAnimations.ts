@@ -1,11 +1,11 @@
 import { I_CSSClassAnimations, I_CSSClassAnimationsConstructorConfig, T_DOMEventsKeys, T_EmitterEventsKeys } from "./types";
-import EventEmitter, { I_EventEmitter } from "@xaro/event-emitter";
-import _, { I_MicroDOM } from "@xaro/micro-dom";
+import EventEmitter from "@xaro/event-emitter";
+import _, { MicroDOM } from "@xaro/micro-dom";
 import { events, eventsListeners } from "./variables";
 
 export default class CSSClassAnimations implements I_CSSClassAnimations {
-  els:      I_MicroDOM;
-  emitter:  I_EventEmitter;
+  els:      MicroDOM;
+  emitter:  EventEmitter;
   allow:    T_DOMEventsKeys[];
 
   constructor(config: I_CSSClassAnimationsConstructorConfig) {
