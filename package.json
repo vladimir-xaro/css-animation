@@ -1,6 +1,6 @@
 {
   "name": "@xaro/css-class-animations",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "",
   "main": "./dist/css-class-animations.es.js",
   "types": "./dist/css-class-animations.d.ts",
