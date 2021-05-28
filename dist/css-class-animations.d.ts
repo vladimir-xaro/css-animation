@@ -5,6 +5,7 @@ export interface I_CSSClassAnimations {
   els:      I_MicroDOM;
   emitter:  I_EventEmitter;
   allow:    T_DOMEventsKeys[];
+  pending:  boolean;
 
   addEvent(domEventKey: T_DOMEventsKeys): void;
   removeEvent(domEventKey: T_DOMEventsKeys): void;

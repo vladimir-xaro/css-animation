@@ -7,19 +7,31 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
   els:      MicroDOM;
   emitter:  EventEmitter;
   allow:    T_DOMEventsKeys[];
+  pending:  boolean = false;
 
   constructor(config: I_CSSClassAnimationsConstructorConfig) {
     this.emitter = new EventEmitter(config.on);
 
     this.els = Array.isArray(config.el) ? _(...config.el) : _(config.el);
 
-    if (config.allow) {
-      this.allow = (Array.isArray(config.allow) ? config.allow : [ config.allow ]).filter(value => events.includes(value));
-    } else if (config.disallow) {
-      this.allow = (Array.isArray(config.disallow) ? config.disallow : [ config.disallow ]).filter(value => events.includes(value));
+    const allow     = config.allow;
+    const disallow  = config.disallow;
+
+    if (allow && allow.length > 0) {
+      this.allow = (Array.isArray(allow) ? allow : [ allow ]).filter(value => events.includes(value.toLowerCase() as T_DOMEventsKeys));
+    } else if (disallow && disallow.length > 0) {
+      this.allow = (Array.isArray(disallow) ? disallow : [ disallow ]).filter(value => events.includes(value.toLowerCase() as T_DOMEventsKeys));
     } else {
       this.allow = events;
     }
+
+    // if (config.allow) {
+    //   this.allow = (Array.isArray(config.allow) ? config.allow : [ config.allow ]).filter(value => events.includes(value));
+    // } else if (config.disallow && config.disallow.length > 0) {
+    //   this.allow = (Array.isArray(config.disallow) ? config.disallow : [ config.disallow ]).filter(value => events.includes(value));
+    // } else {
+    //   this.allow = events;
+    // }
 
     Object.keys(eventsListeners).forEach(key => this[eventsListeners[key]] = this[eventsListeners[key]].bind(this));
 
@@ -27,15 +39,18 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
   }
 
   protected __mutationStartListener(event: AnimationEvent | TransitionEvent) {
+    this.pending = true;
     this.emitter.emit('start', event);
   }
 
   protected __mutationCancelListener(event: AnimationEvent | TransitionEvent) {
     this.emitter.emit('cancel', event);
+    this.pending = false;
   }
 
   protected __mutationEndListener(event: AnimationEvent | TransitionEvent) {
     this.emitter.emit('end', event);
+    this.pending = false;
   }
 
   protected __mutationIterationListener(event: AnimationEvent | TransitionEvent) {
@@ -43,6 +58,7 @@ export default class CSSClassAnimations implements I_CSSClassAnimations {
   }
 
   protected __mutationRunListener(event: AnimationEvent | TransitionEvent) {
+    this.pending = true;
     this.emitter.emit('run', event);
   }
 

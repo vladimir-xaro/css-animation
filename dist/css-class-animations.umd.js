@@ -534,11 +534,11 @@
             }
         } ]), f;
     }( s(Array));
-    function w() {
+    function g() {
         for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
         return e instanceof b ? e : u(b, l(p.apply(void 0, [ document ].concat(e))));
     }
-    const g = {
+    const w = {
         animationstart: "__mutationStartListener",
         animationcancel: "__mutationCancelListener",
         animationend: "__mutationEndListener",
@@ -547,37 +547,46 @@
         transitioncancel: "__mutationCancelListener",
         transitionend: "__mutationEndListener",
         transitionrun: "__mutationRunListener"
-    }, E = Object.keys(g);
+    }, E = Object.keys(w);
     return class {
         els;
         emitter;
         allow;
+        pending=!1;
         constructor(t) {
-            this.emitter = new y(t.on), this.els = Array.isArray(t.el) ? w(...t.el) : w(t.el), 
-            t.allow ? this.allow = (Array.isArray(t.allow) ? t.allow : [ t.allow ]).filter((t => E.includes(t))) : t.disallow ? this.allow = (Array.isArray(t.disallow) ? t.disallow : [ t.disallow ]).filter((t => E.includes(t))) : this.allow = E, 
-            Object.keys(g).forEach((t => this[g[t]] = this[g[t]].bind(this))), this.els.forEach((t => this.allow.forEach((e => t.addEventListener(e, this[g[e]])))));
+            this.emitter = new y(t.on), this.els = Array.isArray(t.el) ? g(...t.el) : g(t.el);
+            const e = t.allow, n = t.disallow;
+            e && e.length > 0 ? this.allow = (Array.isArray(e) ? e : [ e ]).filter((t => E.includes(t.toLowerCase()))) : n && n.length > 0 ? this.allow = (Array.isArray(n) ? n : [ n ]).filter((t => E.includes(t.toLowerCase()))) : this.allow = E, 
+            // if (config.allow) {
+            //   this.allow = (Array.isArray(config.allow) ? config.allow : [ config.allow ]).filter(value => events.includes(value));
+            // } else if (config.disallow && config.disallow.length > 0) {
+            //   this.allow = (Array.isArray(config.disallow) ? config.disallow : [ config.disallow ]).filter(value => events.includes(value));
+            // } else {
+            //   this.allow = events;
+            // }
+            Object.keys(w).forEach((t => this[w[t]] = this[w[t]].bind(this))), this.els.forEach((t => this.allow.forEach((e => t.addEventListener(e, this[w[e]])))));
         }
         __mutationStartListener(t) {
-            this.emitter.emit("start", t);
+            this.pending = !0, this.emitter.emit("start", t);
         }
         __mutationCancelListener(t) {
-            this.emitter.emit("cancel", t);
+            this.emitter.emit("cancel", t), this.pending = !1;
         }
         __mutationEndListener(t) {
-            this.emitter.emit("end", t);
+            this.emitter.emit("end", t), this.pending = !1;
         }
         __mutationIterationListener(t) {
             this.emitter.emit("iteration", t);
         }
         __mutationRunListener(t) {
-            this.emitter.emit("run", t);
+            this.pending = !0, this.emitter.emit("run", t);
         }
         addEvent(t) {
-            E.includes(t) && (this.allow.push(t), this.els.forEach((e => e.addEventListener(t, this[g[t]]))));
+            E.includes(t) && (this.allow.push(t), this.els.forEach((e => e.addEventListener(t, this[w[t]]))));
         }
         removeEvent(t) {
             E.includes(t) && this.allow.includes(t) && (this.allow.splice(this.allow.indexOf(t)), 
-            this.els.forEach((e => e.removeEventListener(t, this[g[t]]))));
+            this.els.forEach((e => e.removeEventListener(t, this[w[t]]))));
         }
         on(t, e) {
             this.emitter.subscribe(t, e);
