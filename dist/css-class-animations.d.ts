@@ -1,9 +1,9 @@
-import { I_EventEmitter } from "@xaro/event-emitter";
-import { I_MicroDOM } from "@xaro/micro-dom";
+import EventEmitter from "@xaro/event-emitter";
+import { MicroDOM } from "@xaro/micro-dom";
 
 export interface I_CSSClassAnimations {
-  els:      I_MicroDOM;
-  emitter:  I_EventEmitter;
+  els:      MicroDOM;
+  emitter:  EventEmitter;
   allow:    T_DOMEventsKeys[];
   pending:  boolean;
 
