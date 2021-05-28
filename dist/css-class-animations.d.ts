@@ -1,21 +1,22 @@
 import EventEmitter from "@xaro/event-emitter";
 import { MicroDOM } from "@xaro/micro-dom";
 
-export interface I_CSSClassAnimations {
+export default class CSSClassAnimations {
   els:      MicroDOM;
   emitter:  EventEmitter;
-  allow:    T_DOMEventsKeys[];
+  allow:    DOMEventsKeys[];
   pending:  boolean;
 
-  addEvent(domEventKey: T_DOMEventsKeys): void;
-  removeEvent(domEventKey: T_DOMEventsKeys): void;
-  on(eventKey: T_EmitterEventsKeys, cb: Function | Function[]): void;
+  constructor(config?: CSSClassAnimationsConstructorConfig);
+  addEvent(domEventKey: DOMEventsKeys): void;
+  removeEvent(domEventKey: DOMEventsKeys): void;
+  on(eventKey: EmitterEventsKeys, cb: Function | Function[]): void;
 }
 
-export interface I_CSSClassAnimationsConstructorConfig {
+export interface CSSClassAnimationsConstructorConfig {
   el:         string | Element | Array<string | Element>;
-  allow?:     T_DOMEventsKeys | T_DOMEventsKeys[];
-  disallow?:  T_DOMEventsKeys | T_DOMEventsKeys[];
+  allow?:     DOMEventsKeys | DOMEventsKeys[];
+  disallow?:  DOMEventsKeys | DOMEventsKeys[];
   on?: {
     start?:     ((event: AnimationEvent | TransitionEvent) => void) | ((event: AnimationEvent | TransitionEvent) => void)[];
     cancel?:    ((event: AnimationEvent | TransitionEvent) => void) | ((event: AnimationEvent | TransitionEvent) => void)[];
@@ -25,7 +26,7 @@ export interface I_CSSClassAnimationsConstructorConfig {
   }
 }
 
-export type T_DOMEventsKeys =
+export type DOMEventsKeys =
   'animationstart'      |
   'animationcancel'     |
   'animationend'        |
@@ -35,7 +36,7 @@ export type T_DOMEventsKeys =
   'transitionend'       |
   'transitionrun';
 
-export type T_EmitterEventsKeys =
+export type EmitterEventsKeys =
   'start'     |
   'cancel'    |
   'end'       |

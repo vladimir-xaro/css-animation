@@ -2,7 +2,8 @@
   "name": "@xaro/css-class-animations",
   "version": "0.1.9",
   "description": "",
-  "main": "./src/index.ts",
+  "main": "./dist/css-class-animations.es.js",
+  "types": "./dist/css-class-animations.d.ts",
   "scripts": {
     "watch": "cross-env rollup -c -w --environment NODE_ENV:development",
     "build": "cross-env rollup -c --environment NODE_ENV:development",
