@@ -67,7 +67,8 @@ if (isDev) {  // Dev
         format: {
           beautify: true,
           comments: true,
-        }
+        },
+        mangle: false
       }),
     ]
   }, {
